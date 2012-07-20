@@ -94,3 +94,15 @@ if __name__ == "__main__":
 		f.close()
 		print "\nfile closed"
 		print type(x)
+
+	class Car:
+		"""Alp's Class"""
+		def __init__(self, model, color, name):
+			self.model = model
+			self.color = color
+			self.name = name
+		def getInformation(self):
+			return str(self.model)+' '+self.color+' '+self.name;
+
+	polo = Car(1998, 'blue', 'polo');
+	print "my car is: "+polo.getInformation()
