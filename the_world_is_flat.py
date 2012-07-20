@@ -106,3 +106,4 @@ if __name__ == "__main__":
 
 	polo = Car(1998, 'blue', 'polo');
 	print "my car is: "+polo.getInformation()
+	
