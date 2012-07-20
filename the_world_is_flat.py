@@ -116,5 +116,5 @@ if __name__ == "__main__":
 	print polo.fault
 	del polo.fault
 	
-	a = input("input python cmd\n")
+#	a = input("input python cmd\n")
 	print str(polo)
