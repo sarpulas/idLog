@@ -101,10 +101,13 @@ if __name__ == "__main__":
 			self.model = model
 			self.color = color
 			self.name = name
+		def __str__(self):
+			return self.getInformation()
 		def getInformation(self):
 			return str(self.model)+' '+self.color+' '+self.name;
 
 	polo = Car(1998, 'blue', 'polo');
+	polo2011 = Car(2011, 'gray', 'polo');
 	print "my car is: "+polo.getInformation()
+	print "my other car is: "+str(polo2011)
 
-	
