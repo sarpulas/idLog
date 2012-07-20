@@ -111,3 +111,10 @@ if __name__ == "__main__":
 	print "my car is: "+polo.getInformation()
 	print "my other car is: "+str(polo2011)
 
+	polo.fault = 'left window is not opening'
+
+	print polo.fault
+	del polo.fault
+	
+	a = input("input python cmd\n")
+	print str(polo)
