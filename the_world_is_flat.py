@@ -133,5 +133,83 @@ if __name__ == "__main__":
 
 	for char in reverse(str(golf)):
 		print char+' ',
+	print ""
 
-	
+	original_stdout = sys.stdout
+	sys.stdout = open('stdout.txt','a+')
+
+	sys.stderr.write('this is the stderr\n')
+	sys.stdout.write('this is the stdout\n')
+
+	sys.stdout = original_stdout
+
+	sys.stdout.write('this is the stdout again\n')
+
+	def getHostname(link):
+		if(link.startswith('http://')):
+			hostname = link[0:link.find('/', 8)+1]
+		else:
+			hostname = link[0:link.find('/')+1]
+		return hostname
+
+	def downloadFile(link, makedir):
+		import urllib2
+		remoteFile = urllib2.urlopen(link)
+		remoteFile_info = remoteFile.info()
+		#print remoteFile_info
+		for key in remoteFile_info:
+			if key=='content-length':
+				print remoteFile_info[key]
+
+		import os
+		# filename = link[link.rfind('/')+1:]
+		filename = link[len(getHostname(link)):]
+		print filename
+
+		if(makedir):
+			if(not os.path.exists(filename[:filename.rfind('/')])):
+				os.makedirs(filename[:filename.rfind('/')])
+
+		if(os.path.exists(filename)):
+			os.remove(filename)
+
+		localFile = open(filename, 'w+')
+		
+		localFile.write(remoteFile.read())
+		#for i in range( int(remoteFile_info['content-length'])):
+		#	localFile.write(remoteFile.read(1))
+		
+		# for line in remoteFile:
+		# 	localFile.write(line)
+
+		localFile.close()
+		return filename
+
+	def scanFileForImageLinks(filename):
+		localFile = open(filename, 'r')
+		start = 0
+		end = 0
+		source = localFile.read()
+		linklist = []
+		while(start != -1):
+			start = source.find('<img', end)
+			if(start == -1):
+				break
+			end = source.find('>', start)
+			imgtag = source[start:end+1]
+			print imgtag
+			innerStart = imgtag.find('src=')
+			innerEnd = imgtag.find( '"', innerStart+5)
+			imglink = imgtag[innerStart+5:innerEnd]
+			print imglink + '->' + str(innerStart) +':'+ str(innerEnd)+'/'+str(len(imgtag))
+			linklist.append(imglink)
+		return linklist
+
+	def downloadFileWithImages(link):
+		filename = downloadFile(link, False)
+		linklist = scanFileForImageLinks(filename)
+		for imglink in linklist:
+			downloadFile(getHostname(link)+imglink, True)
+
+	print getHostname('http://alpsayin.com/kth-format-thesis_proposal_v2_rev4.htm')
+	downloadFileWithImages('http://alpsayin.com/kth-format-thesis_proposal_v2_rev4.htm')
