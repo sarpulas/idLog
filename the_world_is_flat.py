@@ -118,3 +118,20 @@ if __name__ == "__main__":
 	
 #	a = input("input python cmd\n")
 	print str(polo)
+
+	class Volkswagen(Car):
+		"""Volkswagen SubClass"""
+		def getInformation(self):
+			return 'Volkswagen '+Car.getInformation(self);
+
+	golf = Volkswagen(2000, 'blue', 'golf')
+	print str(golf)
+
+	def reverse(data):
+		for index in range(len(data)-1, -1, -1):
+			yield data[index];
+
+	for char in reverse(str(golf)):
+		print char+' ',
+
+	
