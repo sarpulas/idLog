@@ -213,3 +213,11 @@ if __name__ == "__main__":
 
 	print getHostname('http://alpsayin.com/kth-format-thesis_proposal_v2_rev4.htm')
 	downloadFileWithImages('http://alpsayin.com/kth-format-thesis_proposal_v2_rev4.htm')
+
+	class DynamicEmptyStruct:
+		pass
+
+	myDynStruct = DynamicEmptyStruct()
+	myDynStruct.floatMember = 0.5423534
+	myDynStruct.stringMember = 'alp sayin'
+	myDynStruct.dynstructmember = DynamicEmptyStruct()

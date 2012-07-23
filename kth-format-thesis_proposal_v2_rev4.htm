@@ -1,0 +1,1677 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 14 (filtered)">
+<title>VHF/UHF Uplink Solutions for Remote Wireless Sensor Networks</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;}
+@font-face
+	{font-family:"MS Gothic";
+	panose-1:2 11 6 9 7 2 5 8 2 4;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;}
+@font-face
+	{font-family:"\@MS Gothic";
+	panose-1:2 11 6 9 7 2 5 8 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-indent:18.0pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:30.0pt;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:21.6pt;
+	text-indent:-21.6pt;
+	border:none;
+	padding:0cm;
+	font-size:12.0pt;
+	font-family:"Cambria","serif";
+	color:#365F91;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:10.0pt;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:28.8pt;
+	text-indent:-28.8pt;
+	border:none;
+	padding:0cm;
+	font-size:12.0pt;
+	font-family:"Cambria","serif";
+	color:#365F91;
+	font-weight:normal;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:10.0pt;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:36.0pt;
+	text-indent:-36.0pt;
+	border:none;
+	padding:0cm;
+	font-size:12.0pt;
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:normal;}
+h4
+	{mso-style-link:"Heading 4 Char";
+	margin-top:10.0pt;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:43.2pt;
+	text-indent:-43.2pt;
+	border:none;
+	padding:0cm;
+	font-size:12.0pt;
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:normal;
+	font-style:italic;}
+h5
+	{mso-style-link:"Heading 5 Char";
+	margin-top:10.0pt;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:50.4pt;
+	text-indent:-50.4pt;
+	font-size:11.0pt;
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:normal;}
+h6
+	{mso-style-link:"Heading 6 Char";
+	margin-top:14.0pt;
+	margin-right:0cm;
+	margin-bottom:5.0pt;
+	margin-left:57.6pt;
+	text-indent:-57.6pt;
+	font-size:11.0pt;
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:normal;
+	font-style:italic;}
+p.MsoHeading7, li.MsoHeading7, div.MsoHeading7
+	{mso-style-link:"Heading 7 Char";
+	margin-top:16.0pt;
+	margin-right:0cm;
+	margin-bottom:5.0pt;
+	margin-left:64.8pt;
+	text-indent:-64.8pt;
+	font-size:10.0pt;
+	font-family:"Cambria","serif";
+	color:#9BBB59;
+	font-weight:bold;}
+p.MsoHeading8, li.MsoHeading8, div.MsoHeading8
+	{mso-style-link:"Heading 8 Char";
+	margin-top:16.0pt;
+	margin-right:0cm;
+	margin-bottom:5.0pt;
+	margin-left:72.0pt;
+	text-indent:-72.0pt;
+	font-size:10.0pt;
+	font-family:"Cambria","serif";
+	color:#9BBB59;
+	font-weight:bold;
+	font-style:italic;}
+p.MsoHeading9, li.MsoHeading9, div.MsoHeading9
+	{mso-style-link:"Heading 9 Char";
+	margin-top:16.0pt;
+	margin-right:0cm;
+	margin-bottom:5.0pt;
+	margin-left:79.2pt;
+	text-indent:-79.2pt;
+	font-size:10.0pt;
+	font-family:"Cambria","serif";
+	color:#9BBB59;
+	font-style:italic;}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-link:"Comment Text Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-indent:18.0pt;
+	font-size:10.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Header Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-indent:18.0pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-indent:18.0pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-indent:18.0pt;
+	font-size:9.0pt;
+	font-family:"Calibri","sans-serif";
+	font-weight:bold;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-link:"Title Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	border:none;
+	padding:0cm;
+	font-size:30.0pt;
+	font-family:"Cambria","serif";
+	color:#243F60;
+	font-style:italic;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{mso-style-link:"Body Text Char";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	text-indent:18.0pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoSubtitle, li.MsoSubtitle, div.MsoSubtitle
+	{mso-style-link:"Subtitle Char";
+	margin-top:10.0pt;
+	margin-right:0cm;
+	margin-bottom:45.0pt;
+	margin-left:0cm;
+	text-align:right;
+	font-size:12.0pt;
+	font-family:"Calibri","sans-serif";
+	font-style:italic;}
+strong
+	{letter-spacing:0pt;}
+em
+	{color:#5A5A5A;
+	font-weight:bold;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-link:"Plain Text Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-indent:18.0pt;
+	font-size:10.5pt;
+	font-family:Consolas;}
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject
+	{mso-style-link:"Comment Subject Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-indent:18.0pt;
+	font-size:10.0pt;
+	font-family:"Calibri","sans-serif";
+	font-weight:bold;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-indent:18.0pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+p.MsoNoSpacing, li.MsoNoSpacing, div.MsoNoSpacing
+	{mso-style-link:"No Spacing Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	text-indent:18.0pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	text-indent:18.0pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	text-indent:18.0pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	text-indent:18.0pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoQuote, li.MsoQuote, div.MsoQuote
+	{mso-style-link:"Quote Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-indent:18.0pt;
+	font-size:11.0pt;
+	font-family:"Cambria","serif";
+	color:#5A5A5A;
+	font-style:italic;}
+p.MsoIntenseQuote, li.MsoIntenseQuote, div.MsoIntenseQuote
+	{mso-style-link:"Intense Quote Char";
+	margin-top:16.0pt;
+	margin-right:72.0pt;
+	margin-bottom:16.0pt;
+	margin-left:72.0pt;
+	text-indent:18.0pt;
+	line-height:125%;
+	background:#4F81BD;
+	border:none;
+	padding:0cm;
+	font-size:12.0pt;
+	font-family:"Cambria","serif";
+	color:white;
+	font-style:italic;}
+span.MsoSubtleEmphasis
+	{color:#5A5A5A;
+	font-style:italic;}
+span.MsoIntenseEmphasis
+	{color:#4F81BD;
+	font-weight:bold;
+	font-style:italic;}
+span.MsoSubtleReference
+	{color:windowtext;
+	text-decoration:underline;}
+span.MsoIntenseReference
+	{color:#76923C;
+	font-weight:bold;
+	text-decoration:underline;}
+span.MsoBookTitle
+	{font-family:"Cambria","serif";
+	color:windowtext;
+	font-weight:bold;
+	font-style:italic;}
+p.MsoBibliography, li.MsoBibliography, div.MsoBibliography
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:25.2pt;
+	margin-bottom:.0001pt;
+	text-indent:-25.2pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoTocHeading, li.MsoTocHeading, div.MsoTocHeading
+	{margin-top:30.0pt;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:21.6pt;
+	text-indent:-21.6pt;
+	border:none;
+	padding:0cm;
+	font-size:12.0pt;
+	font-family:"Cambria","serif";
+	color:#365F91;
+	font-weight:bold;}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-link:Title;
+	font-family:"Cambria","serif";
+	color:#243F60;
+	font-style:italic;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria","serif";
+	color:#365F91;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-link:Header;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	color:#4F81BD;}
+span.BodyTextChar
+	{mso-style-name:"Body Text Char";
+	mso-style-link:"Body Text";
+	font-family:"Calibri","sans-serif";}
+span.NoSpacingChar
+	{mso-style-name:"No Spacing Char";
+	mso-style-link:"No Spacing";}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+span.CommentTextChar
+	{mso-style-name:"Comment Text Char";
+	mso-style-link:"Comment Text";}
+span.CommentSubjectChar
+	{mso-style-name:"Comment Subject Char";
+	mso-style-link:"Comment Subject";
+	font-weight:bold;}
+span.Heading4Char
+	{mso-style-name:"Heading 4 Char";
+	mso-style-link:"Heading 4";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-style:italic;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria","serif";
+	color:#365F91;
+	font-weight:bold;}
+span.Heading5Char
+	{mso-style-name:"Heading 5 Char";
+	mso-style-link:"Heading 5";
+	font-family:"Cambria","serif";
+	color:#4F81BD;}
+span.Heading6Char
+	{mso-style-name:"Heading 6 Char";
+	mso-style-link:"Heading 6";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-style:italic;}
+span.Heading7Char
+	{mso-style-name:"Heading 7 Char";
+	mso-style-link:"Heading 7";
+	font-family:"Cambria","serif";
+	color:#9BBB59;
+	font-weight:bold;}
+span.Heading8Char
+	{mso-style-name:"Heading 8 Char";
+	mso-style-link:"Heading 8";
+	font-family:"Cambria","serif";
+	color:#9BBB59;
+	font-weight:bold;
+	font-style:italic;}
+span.Heading9Char
+	{mso-style-name:"Heading 9 Char";
+	mso-style-link:"Heading 9";
+	font-family:"Cambria","serif";
+	color:#9BBB59;
+	font-style:italic;}
+span.SubtitleChar
+	{mso-style-name:"Subtitle Char";
+	mso-style-link:Subtitle;
+	font-style:italic;}
+span.QuoteChar
+	{mso-style-name:"Quote Char";
+	mso-style-link:Quote;
+	font-family:"Cambria","serif";
+	color:#5A5A5A;
+	font-style:italic;}
+span.IntenseQuoteChar
+	{mso-style-name:"Intense Quote Char";
+	mso-style-link:"Intense Quote";
+	font-family:"Cambria","serif";
+	color:white;
+	background:#4F81BD;
+	font-style:italic;}
+.MsoChpDefault
+	{font-family:"Calibri","sans-serif";}
+.MsoPapDefault
+	{text-indent:18.0pt;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=WordSection1>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 align=left
+ width="80%" style='width:80.0%;border-collapse:collapse;border:none;
+ margin-left:7.1pt;margin-right:7.1pt'>
+ <tr>
+  <td width=511 valign=top style='width:383.6pt;border:none;border-left:solid #4F81BD 2.25pt;
+  padding:10.8pt 5.75pt 10.8pt 5.75pt'>
+  <p class=MsoNoSpacing><img width=205 height=205 id="Picture 1"
+  src="kth-format-thesis_proposal_v2_rev4_files/image001.jpg"></p>
+  <p class=MsoNoSpacing><span style='font-family:"Cambria","serif"'>KTH Royal
+  Institute of Technology</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=511 valign=top style='width:383.6pt;border:none;border-left:solid #4F81BD 2.25pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNoSpacing><span style='font-size:40.0pt;font-family:"Cambria","serif"'>VHF/UHF
+  Uplink Solutions for Remote Wireless Sensor Networks</span></p>
+  </td>
+ </tr>
+ <tr style='height:103.2pt'>
+  <td width=511 valign=top style='width:383.6pt;border:none;border-left:solid #4F81BD 2.25pt;
+  padding:10.8pt 5.75pt 10.8pt 5.75pt;height:103.2pt'>
+  <p class=MsoNoSpacing><span style='font-size:9.0pt'>The main problem of this
+  project is to get the collected data out from the sink mote of a wireless
+  sensor network to a remote repository with internet access.  The objective is
+  to implement IP over wireless software defined radio link with longest possible
+  range. With the successful implementation of this link, the sink mote will be
+  able to connect to a remote storage, wirelessly, without line-of-sight and
+  with an easy to use protocol like IP.  This wireless link will be implemented
+  in a low frequency band to achieve longer range.  The overarching goal is to
+  add IP over VHF/UHF software defined radio link interface to Alix/Bifrost
+  gateway.  In the end, except for the implementation of the proposed
+  solutions, a comparison of these solutions based on throughput, range,
+  portability, power-requirement and compatibility with standards will be made.</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>&nbsp;</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>&nbsp;</p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 align=left
+ width="80%" style='width:80.0%;border-collapse:collapse;margin-left:7.1pt;
+ margin-right:7.1pt'>
+ <tr>
+  <td width=511 valign=top style='width:383.6pt;padding:10.8pt 5.75pt 10.8pt 5.75pt'>
+  <p class=MsoNoSpacing style='text-align:justify;text-justify:inter-ideograph'>Alp
+  Sayin</p>
+  <p class=MsoNoSpacing style='text-align:justify;text-justify:inter-ideograph'>25 Jun 2012</p>
+  <p class=MsoNoSpacing style='text-align:justify;text-justify:inter-ideograph'><span
+  style='color:#4F81BD'>&nbsp;</span></p>
+  </td>
+ </tr>
+</table>
+
+<span style='font-size:11.0pt;font-family:"Calibri","sans-serif"'><br
+clear=all style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><b><span
+style='font-size:13.0pt;font-family:"Cambria","serif"'>&nbsp;</span></b></p>
+
+<div style='border:none;border-bottom:solid #365F91 1.5pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1>1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Abbreviations</h1>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>ADC
+– Analog to Digital Converter </p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>AFSK
+– Audio Frequency Shift Keying</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>APRS
+– Automatic Packet Reporting System</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>CD –
+Carrier Detect</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>CSMA
+– Carrier Sense Multiple Access</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>FCS
+– Frame Check Sequence</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>FSK
+– Frequency Shifted Keying</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>IEEE
+– Institute of Electrical and Electronics Engineers</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>GPRS
+– General Packet Radio Service</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>IP –
+Internet Protocol</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>KTH
+– Kungliga Tekniska <span lang=TR>Hö</span>gskolan</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>MCU
+– Microcontroller Unit</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>MTU
+– Maximum Transmission Unit</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>NBFM
+– Narrow Band Frequency Modulation</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>NMT
+– Nordic Mobile Telephone</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>OS –
+Operating System</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>OSI
+– Open Systems Interconnection</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>RF –
+Radio Frequency</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>RSSI
+– Receive Signal Strength Indicator</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>SLIP
+– Serial Line IP</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>TCP
+– Transmission Control Protocol</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>TNC
+– Terminal Node Controller</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>TFTP
+– Trivial File Transfer Protocol</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>TSLab
+– Telecommunication System Laboratory </p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>UART
+– Universal Asynchronous Receiver/Transmitter</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>UDP
+– User Datagram Protocol</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>UHF
+– Ultra High Frequency</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>UI –
+Unnumbered Information</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>VHF
+– Very High Frequency</p>
+
+<div style='border:none;border-bottom:solid #365F91 1.5pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1>2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Authors and Supervisors</h1>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>The
+main author of this thesis is Alp Sayin, who is a second year System-on-Chip
+Design student. All thesis work is expected to be completed by him. This
+includes codes, documentations, reports and hardware designs if there will be
+any. The thesis will be built on previous works on this field from sources like
+published papers and amateur radio community.</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>The
+supervisors are Robert Olsson and Bj<span lang=TR>ö</span>rn Pehrson from KTH. </p>
+
+<div style='border:none;border-bottom:solid #365F91 1.5pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1>3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Background</h1>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>The
+context of this thesis proposal is the work at TSLab on Open Wireless Sensor
+Networks for environment monitoring. The system under development includes
+sensors for environment monitoring connected to a sensor network node (mote)
+with an MCU interconnected to other similar motes to form a sensor network, that
+can be placed in a remote area, with at least one of the motes being a sink
+node, i.e. connected to a gateway collecting the data and capable of delivering
+it via some sort of upstream connection to a central data repository. In most cases,
+this gateway is directly connected to the internet, which is not the case in
+this project. The wireless sensor network or the gateway may not have access to
+internet via any scheme and cabling may not also be an option. Therefore,
+wireless uploading options are explored.</p>
+
+<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h2>3.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Wireless Sensor Network</h2>
+
+</div>
+
+<div style='border:none;border-bottom:solid #95B3D7 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h3>3.1.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Wireless Sensor Network</h3>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>A
+sensor network is a networked system of interconnected measurement nodes
+communicating and reporting their measurement data to a central repository. In
+a wireless sensor network (WSN) these nodes are connected to each other
+wirelessly, and the nodes are usually low-power microcontroller units with no
+significant memory storage. </p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>In
+more detail, a WSN is built of nodes (or motes) of from a few to several
+hundreds or even thousands, where each node is connected to one (or several)
+sensors. Each such sensor network node has typically several parts: a radio
+transceiver with an internal antenna or connection to an external antenna, a
+microcontroller, an electronic circuit for interfacing with the sensors and an
+energy source, usually a battery or an embedded form of energy harvesting (e.g.
+solar panels). Size and cost constraints on sensor nodes result in corresponding
+constraints on resources such as energy, memory, computational speed and
+communications bandwidth. The topology of the WSNs can vary from a simple star
+network to an advanced multi-hop wireless mesh network. The propagation
+technique between the hops of the network can be routing or flooding<span
+style='font-family:"Cambria","serif"'>[1]</span><span
+style='font-family:"Cambria","serif"'>[2]</span>.</p>
+
+<div style='border:none;border-bottom:solid #95B3D7 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h3>3.1.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Sensors</h3>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>In
+our case the sensors include sensors for synoptic weather data, soil moisture
+and drinking water quality parameters, such as turbidity, acidity and
+redox-potential. Some motes also contain solar panels to measure the solar
+power efficiency through the day and sensors monitoring the voltage and
+temperature of connected batteries used as energy source.</p>
+
+<div style='border:none;border-bottom:solid #95B3D7 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h3>3.1.3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>MCU and OS</h3>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>The
+MCU currently used for mote experiments is an Atmel ATMega128RFA1[3]. It integrates an MCU, ADC and RF-module in one chip. In deep sleep it consumes about 1 uA. Small solar panels are used as power source. And as replacement for chemical batteries, ultra-capacitor batteries in different sizes are used as power storage. The motivation for this choice is that they have much longer lifetime and are not affected by operating temperature. Two different operating systems dedicated for wireless sensor networks have been explored[4], Contiki[5] and TinyOS[6]. And as a result Contiki-Os has been found more beneficial for the work in TSLab. Contiki’s capabilities for multi-tasking and its internal communication stacks were found much more powerful than that of TinyOS’s. Furthermore the necessity to learn a new programming language –namely NesC- made it less preferable, due to the time requirements [7][8].</p>
+
+<div style='border:none;border-bottom:solid #95B3D7 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h3>3.1.4<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Inter-Node Communication</h3>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>The
+communication between nodes is supplied by internal radios working on 2.4 Ghz
+band using the IEEE 802.15.4 protocol <span
+style='font-family:"Cambria","serif"'>[9]</span>. This is a low power
+communication option which usually allows 10-20 meters of range with an average
+250 kbit/s raw data rate. On top of the IEEE 802.15.4 protocol the Contiki’s
+Rime protocol is used to transfer messages to the sink <span
+style='font-family:"Cambria","serif"'>[10]</span>.</p>
+
+<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h2>3.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Uplink</h2>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>Uplink
+is usually implemented with a cabled connection, which is usually a serial port
+connection or an Ethernet connection. As previous work Robert Olsson and Jens
+Laas has written a software called Sensd to receive measurement data into
+gateway from the sink mote via a serial terminal[11]. Current work involves writing a patch to Sensd to invoke the newly written software to send out the received data in the gateway.</p>
+
+<div style='border:none;border-bottom:solid #95B3D7 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h3>3.2.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Gateway</h3>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>The
+gateway is the Alix[12] board running the Bifrost[13] operating system which is optimized for routing. Voyage-Linux [14] operating system is also tested due to its easiness for adding packages. Search for something more power-lean than the Alix board is going-on. One of the alternatives includes removing the Alix machine and giving the uploading job to the sink mote itself.</p>
+
+<div style='border:none;border-bottom:solid #95B3D7 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h3>3.2.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Physical Layer</h3>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>For
+the wireless streaming, the options of VHF and UHF amateur radio band
+communications are chosen. So, there won’t be a large amount of fee for
+frequency licensing. For VHF, the used amateur band is 144 MHz (i.e. 2 meter
+band), and for UHF the used amateur band is 433 MHz (i.e. 70 centimeter band).
+Of course, the solution will have to follow the rules of the amateur radio
+communications. These rules are generally the same, but may differ from country
+to country. An example of these rules for United States can be found in [15]. </p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>On
+these frequency bands, we have the ability to transmit audio with a maximum of
+9600 Hz sample rate depending on the underlying hardware. Between the modulation
+options, two of them are explored, one of them is the bi-phase encoding
+(Manchester) [16] and the other is AFSK (i.e. 1200 baud Bell Modem) [17]. </p>
+
+<div style='border:none;border-bottom:solid #95B3D7 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h3>3.2.3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Link Layer</h3>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>AX.25
+is a link-layer protocol which is defined to reliably deliver data over two
+amateur radio stations [18]. Although AX.25 is said to be a link-layer protocol, it also has utilities for routing and connection-oriented transfers [18]. But, for our purposes the simplest form of AX.25 frames will be used, which are the UI frames. These frames are similar to the UDP/IP frames. AX.25 defines a framing format for packets, protocols etc. But it does not define a physical layer, meaning that it can be built upon any type of physical connection. </p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>The
+most usual physical layer for amateur radio community is the transmission of
+AFSK modulated signals over the selected frequency [19]. Above the AX.25 layer other layers can be built upon. The  ‘soundmodem’ software provides a network interface to use audio ports of a system with AX.25 with various kinds of modulation including AFSK [20]. As a link-layer Ethernet framing option is also explored [21].</p>
+
+<div style='border:none;border-bottom:solid #95B3D7 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h3>3.2.4<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Network Layer</h3>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>For
+the network layer two options are going to be explored, IPv6 and APRS[22][23]. APRS, Automatic Packet Reporting System is a system developed to deliver APRS messages to a centralized database [24]. It can also be used to deliver messages between stations. APRS messages are basically UI AX.25 packets with a special formatting [23]. Instead of transmitting the collected data to a specific repository, transmitting the data to the APRS system via use of ‘aprx’ software is also going to be explored[25]. </p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>In
+Linux based systems TUN/TAP devices can be used to read in/write out raw IP
+data from/to user programs [26]. These virtual network kernel devices allow users to write their own network drivers without going deep into the Linux kernel [27]. This option will also be explored to tunnel the IP packets from user programs to encapsulate them with AX.25, encode them, and then send them to air with the use of a radio. </p>
+
+<div style='border:none;border-bottom:solid #95B3D7 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h3>3.2.5<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Hardware</h3>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>The
+only required hardware is the radio itself. This can be either a handheld radio
+[28], a movable station[29], or a single-chip radio solution like Radiometrix Bim2A or Radiometrix UHX1 [30][31]. Depending on whether the radio hardware supports direct modulation of digital data or not, there might be a need for an audio card to manage the AD/DA conversion. If the computer hardware used does not include an audio card, a USB Audio Fob may also be necessary [32]. These devices are cheap plug-n-play USB audio cards, mostly useful for systems without sound cards (e.g. ALIX). Also depending on the available hardware a USB-TTL-Serial converter may also be required to control the RTS/CTS for PTT signaling or checking squelch [33]. </p>
+
+<div style='border:none;border-bottom:solid #365F91 1.5pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1>4<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Related Work</h1>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>The
+main problem of this project is to get the collected data out from the sink
+mote of a wireless sensor network to a remote repository with internet access.
+Similar environmental wireless sensor network projects have been known to use
+commercial solutions[34][35]. A 900 MHz radio modem called FreeWave Ranger is used in this project. It can give 115.2 kbps throughput with about 90 km range with clear line of sight [36]. This project is aiming to use the amateur radio bands, and 900 MHz (33 cm) band is not an amateur band except the Americas (North, Central and South).</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>Some
+other similar projects use 2.4 GHz 802.11 links with directed antennas [37]. Using directed antennas give a benefit from the range perspective, but still may not be enough for our case, where we will clearly need more than about 300 meters. And even the researchers in that project decided to leave their wi-fi gateway solution due to two main reasons; excessive power consumption and the overhead caused by TCP/IP and 802.11b link.</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>Also
+some wireless sensor network projects have tried the option of GPRS modems, but
+decided that it was not stable [38]. In more detail, they have found out that GPRS modems tend to lock up after extended periods of time (2-4 days) and can be recovered only by cycling power to them. According to the researchers GPRS modems are generally not robust enough to run long-term outdoor applications. Addition to this information, the cellular coverage in Tanzania, and the internet access is also known to be not robust enough.</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>One
+of the projects decided to leave the data in the sink and retrieve it manually [39]. In this implementation of the WSN, each node has its SD card storage where they store their data. And this data can be queried from the sink node when it’s necessary. This implementation was chosen to reduce the complexity of the system, and it was found not necessary to relay the data since the researchers were also present on the field during the time of measurements.</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>For
+this project, none of these solutions are feasible except the commercial one[36]. But we are exploring open-source software and hardware solutions while being able to work with allowed frequency bands, therefore using commercial applications is also not an option.</p>
+
+<div style='border:none;border-bottom:solid #365F91 1.5pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1>5<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Problem Statement</h1>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>The
+objective of this thesis project is exploring the tradeoffs coming with the use
+of </p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:54.0pt;text-align:justify;
+text-justify:inter-ideograph;text-indent:-18.0pt'>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>2.4 GHz, 434 MHz and 144 MHz frequencies and associated protocol stacks
+to optimize the range And QoS (throughput, data rate, error rate).</p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:54.0pt;text-align:justify;
+text-justify:inter-ideograph;text-indent:-18.0pt'>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Different hardware and software solutions, from dedicated hardware
+solutions to software defined radio links to optimize power consumption and
+flexibility.</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>The
+wireless uplink will be implemented in all three frequency bands. With the lower
+frequencies there follows lower data rates.</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>For
+best performance, the radio hardware requires a balanced signal to be
+transmitted over the carrier frequency (50:50 mark to space ratio for digital
+signals)  [40]. This applies for both types of radio hardware we have. Therefore a balancing technique has to be found and used. The usual method to transmit AX.25 messages is using an AFSK modulated signal, which is already balanced (does not stay in the same level for relatively long time). But for digital feeds, a balancing method like Manchester encoding is going to be explored.</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>The
+overarching goal is to add IP over a VHF/UHF software defined radio link
+interface to Alix/Bifrost gateway. And while achieving this goal, mobility of
+the design will also be taken into consideration, meaning that presumed outcome
+of the thesis project is a portable device that uses serial port and not so
+dependent on the connected platform. So it might be connected to a sink node in
+the sensor network rather than the gateway itself (e.g. in order to extend the
+wireless sensor network).</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>In
+the end, except for the implementation of the proposed solutions, a comparison
+of these solutions based on throughput, range, portability, power-requirement
+and compatibility with standards will be made.</p>
+
+<div style='border:none;border-bottom:solid #365F91 1.5pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1>6<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Goals</h1>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>Primary
+goal of this thesis project is to produce a feasible, minimum hardware,
+low-cost, low-power, long range (10-1000 km) solution to the problem of getting
+the sensor data out from the sink mote to a remote repository. Secondary goal
+is to implement IP over the same solution, so that existing user programs, or
+newly developed network programs can be used over this link. When this thesis
+project is finished, there will be at least one hardware/software which will be
+plugged into the sink mote and the remote repository, and will carry out the
+mission of transferring the sensor data.</p>
+
+<div style='border:none;border-bottom:solid #365F91 1.5pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1>7<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Deliverables</h1>
+
+</div>
+
+<p class=MsoBodyText style='text-align:justify;text-justify:inter-ideograph'>D1.
+Intermediate presentations and demonstrations</p>
+
+<p class=MsoBodyText style='text-align:justify;text-justify:inter-ideograph'>-
+Bifrost workshop at KTH 2012-03-08</p>
+
+<p class=MsoBodyText style='text-align:justify;text-justify:inter-ideograph'>-
+IST-Africa 2012-05-09--11 in Dar es Salaam</p>
+
+<p class=MsoBodyText style='text-align:justify;text-justify:inter-ideograph'>D2.
+Final report, presentation and demonstration 2012-07-06  </p>
+
+<p class=MsoBodyText style='text-align:justify;text-justify:inter-ideograph'>D3.
+Hardware and software designs submitted to an agreed repository</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>&nbsp;</p>
+
+<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h2>7.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Design</h2>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>On
+the WSN side, the decision is to use a topology with a sink node connected to,
+or integrated with, the uplink gateway. All WSN nodes use the Rime Protocol
+over IEEE 802.15.4 protocol stack and are implemented using the ATMega128RFA1
+MCU with integrated radio and Contiki as OS.</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>On
+the uplink side, the decision is to use two different Radiometrix radio
+components, Bim2A (434 MHz) and UHX1 (144 MHz) [30] [31]. These radios are both NBFM radios. They support feeding digital data or a high level linear signal such as an AFSK modulated signal into their inputs. Using a digital stream means that the radio component is connected via serial port, while using a modulated signal means interfacing via a separate hardware modem (e.g. TNC) or via a soundcard and a soft-modem (e.g. soundmodem). Also in the development process instead of single-chip radio solutions, handheld or movable radio stations will also be used.</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>In
+all cases TX/RX switching is done via the serial port’s RTS signal. The former
+is less complex, which may facilitate integration of the uplink gateway and WSN
+the sink node. The latter requires a separate modem or more software and
+processing power but can be adapted to existing standards.  Issues to explore
+include differences in range, data rate, error rate and power consumption.</p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>The
+choice of OS/computer/processor when implementing the uplink gateway is a
+tradeoff between ease of demonstration and performance optimization. When using
+the digital input in the uplink radio, it is interesting to explore if the
+upstream gateway may be possible to implement under Contiki-Os. When using
+analog modulation, the stepwise refinement chosen is </p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:54.0pt;text-align:justify;
+text-justify:inter-ideograph;text-indent:-18.0pt'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Ubuntu/Laptop</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:54.0pt;text-align:justify;
+text-justify:inter-ideograph;text-indent:-18.0pt'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Voyage/Alix</p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:54.0pt;text-align:justify;
+text-justify:inter-ideograph;text-indent:-18.0pt'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Bifrost/Alix.</p>
+
+<div style='border:none;border-bottom:solid #365F91 1.5pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1>8<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Proposed Solutions</h1>
+
+</div>
+
+<p class=MsoNormal>Below are the proposed solutions for solving the problems.
+Note that the names of the solutions are just to simplify the further
+discussions. </p>
+
+<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h2>8.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>UART/Serial Port Based</h2>
+
+</div>
+
+<p class=MsoNormal>These solutions feed digital data into the radio. And the
+digital data is generated via the serial port. This is why they are categorized
+as Uart/Serial port based solutions. These solutions generate Manchester
+encoded AX.25 frames encapsulating IP packets.</p>
+
+<div style='border:none;border-bottom:solid #95B3D7 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h3>8.1.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>UDP/IPv6 over AX.25</h3>
+
+</div>
+
+<p class=MsoNormal>These solutions implement UDP/IPv6 as the network/transport
+layer over AX.25 link layer protocol.</p>
+
+<div style='border:none;border-bottom:solid #B8CCE4 1.0pt;padding:0cm 0cm 2.0pt 0cm'>
+
+<h4>8.1.1.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Solution 1 – Radiotftp</h4>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>Radiotftp
+solution proposes tailored software to drive the Radiometrix radio
+transceivers. The software can run either as a server or as a client depending
+on its parameters. A client can send WRQ and RRQ requests as stated in TFTP RFC[41]. The TFTP application is built by following the standard OSI layers[42]. The link layer is AX.25 or Ethernet depending on the compile-time flags. The network layer is UDP/IPv6 [43][22]. These layers ensure that the transmitted data is indeed correct. And the network layer may be used for future work such as routing or forwarding. It is usual for a wireless sensor network to create large amounts of data as time progresses. Therefore an appending option has also been added to the protocol. So the client (i.e. gateway) can send the data as it arrives. Since the maximum size of a TFTP packet is defined as 512 bytes[41], a buffering option is also considered. Below is a list of predicted advantages and disadvantages of this solution.</p>
+
+<p class=MsoNormal>Advantages:</p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>This is a tailored solution for the problem, therefore it is
+reasonable to assume that it will have more performance (i.e. greater
+throughput).</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>It is written completely in C and it is not dependent on Linux
+kernels, therefore it should be relatively easier to port.</p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>It is a Bifrost compatible solution.</p>
+
+<p class=MsoNormal>Disadvantages:</p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Since it is a tailored solution, it is a less flexible solution
+(i.e. only file transfer is allowed, command sending or remote shell is not an
+option).</p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Since a serial port is involved, actual AX.25 framing is not an
+option (AX.25 is a bit based protocol; no bit stuffing, larger MTU, start and
+stop bits from UART) [18].</p>
+
+<p class=MsoCaption><img width=934 height=226 id="Picture 2"
+src="kth-format-thesis_proposal_v2_rev4_files/image002.png"></p>
+
+<p class=MsoCaption>Figure 1. System diagram for radiotftp solution</p>
+
+<div style='border:none;border-bottom:solid #B8CCE4 1.0pt;padding:0cm 0cm 2.0pt 0cm'>
+
+<h4>8.1.1.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Solution 2 – Radiotftp_process</h4>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>Radiotftp_process
+solution proposes the use of radiotftp software proposed in solution 1, and
+porting of this software into Atmega128Rfa1 running Contiki-Os. The radiotftp
+software will be ported as a Contiki process called radiotftp_process. In this
+solution the gateway can be completely removed, and the sink mote can
+personally send the sensor data. This solution is very similar to the solution
+1 except for this change. Below is a list of predicted advantages and
+disadvantages of this proposed solution.</p>
+
+<p class=MsoNormal>Advantages: </p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>This is a tailored solution for the problem, therefore it is
+reasonable to assume that it will have more performance (i.e. greater
+throughput).</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span> Removal of gateway can save a lot of power (e.g. 5 Watts).</p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The receiving end can still run Bifrost, which makes this
+solution Bifrost compatible.</p>
+
+<p class=MsoNormal>Disadvantages:</p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Removal of gateway also means the removal of the gateway storage.
+So, in a case of broken link or broken receiver, the data will be lost instead
+of being saved in the gateway.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Requires porting of the software to Atmega128Rfa1 with Contiki,
+which takes time (even though radiotftp is designed to be portable). </p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Since it is a tailored solution, it is a less flexible solution
+(i.e. only file transfer is allowed, command sending or remote shell is not an
+option).</p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Since a serial port is involved, actual AX.25 framing is not an
+option (AX.25 is a bit based protocol).</p>
+
+<p class=MsoCaption><img width=935 height=259 id="Picture 4"
+src="kth-format-thesis_proposal_v2_rev4_files/image003.png"></p>
+
+<p class=MsoCaption>Figure 2. System diagram for radiotftp_process solution</p>
+
+<div style='border:none;border-bottom:solid #95B3D7 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h3>8.1.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>IPv4 over AX.25</h3>
+
+</div>
+
+<p class=MsoNormal>These solutions encapsulate the IPv4 packets generated by
+the kernel and encapsulate them within AX.25 frames. After that the frames are
+Manchester encoded and sent. Since the packets are generated by the kernel, the
+transport layer is dependent on the used application (e.g. TFTP uses UDP, while
+FTP uses TCP).</p>
+
+<div style='border:none;border-bottom:solid #B8CCE4 1.0pt;padding:0cm 0cm 2.0pt 0cm'>
+
+<h4>8.1.2.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Solution 3 – Radio_tunnel</h4>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>Radio_tunnel
+solution proposes the use of a kernel tunnel interface to create a network
+kernel interface to drive the Radiometrix transceivers. This solution is very
+much like the solution 2, except that instead of using audio ports, this
+solution uses serial port. A software called radio_tunnel will be written to
+capture IP packets. Captured IP packets will be encapsulated with AX.25
+headers. They will be Manchester encoded and will be transmitted through
+Radiometrix transceivers. The receiver part will capture these frames, decode
+and unpack them. After that, received IP packets will be fed back to the kernel
+for user programs’ use. Below is a list of predicted advantages and
+disadvantages of this proposed solution.</p>
+
+<p class=MsoNormal>Advantages:</p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Like the soundmodem solution, this is a very flexible solution.
+It will allow the use of any kind of user programs that use network.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Like the soundmodem solution, TCP/IP will also be ready for use,
+which means the TCP can utilize the channel for most efficient use.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>It’s relatively easy to implement.</p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>This solution is Bifrost compatible.</p>
+
+<p class=MsoNormal>Disadvantages:</p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>It might need comparator circuits to check the RSSI to clean out
+the garbage data.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>As in radiotftp solution, since the underlying hardware will be a
+serial port, AX.25 will not be fully followed (e.g. no bit stuffing, larger
+MTU, start and stop bits from UART).</p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>TCP may utilize channel too much with its control data.</p>
+
+<p class=MsoCaption><img width=934 height=226 id="Picture 5"
+src="kth-format-thesis_proposal_v2_rev4_files/image004.png"></p>
+
+<p class=MsoCaption>Figure 3. System diagram for radio_tunnel solution</p>
+
+<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h2>8.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Audio Port Based</h2>
+
+</div>
+
+<p class=MsoNormal>These solutions use audio ports of a system to generate AFSK
+modulated signals that carry AX.25 frames. Within the AX.25 frames there can be
+APRS messages as network/transport layer or IP packets.</p>
+
+<div style='border:none;border-bottom:solid #95B3D7 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h3>8.2.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>IPv4 over AX.25</h3>
+
+</div>
+
+<p class=MsoNormal>These solutions encapsulate the IPv4 packets generated by
+the kernel and encapsulate them within AX.25 frames. After that the frames are
+AFSK modulated and sent. Since the packets are generated by the kernel, the
+transport layer is dependent on the used application (e.g. TFTP uses UDP, while
+FTP uses TCP).</p>
+
+<div style='border:none;border-bottom:solid #B8CCE4 1.0pt;padding:0cm 0cm 2.0pt 0cm'>
+
+<h4>8.2.1.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Solution 4 – Soundmodem</h4>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>Soundmodem
+solution proposes use of existing AX.25 kernel headers of Linux and the
+‘soundmodem’ software written by Thomas Sailor[44][20]. The soundmodem software creates a virtual kernel network interface using the audio ports of a system. After running the software and setting up the hardware connections, two computers can interact with each other as if they are connected via an Ethernet cable. This means any kind of network resource of Linux is available (e.g. TCP/IP). After the setup, a small bash script is run to follow the incoming data to gateway and send them to repository with ‘ftp’, ‘tftp’ or ‘scp’. Unfortunately, soundmodem software is not yet ready for Bifrost, but it works in a Debian branch called Voyage Linux[14]. For the initial tests, Voyage Linux has been used. Below is a list of predicted advantages and disadvantages of the proposed solution.</p>
+
+<p class=MsoNormal>Advantages:</p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>This is a completely standard and a generic solution to the problem,
+therefore it is more flexible. It even allows running of an http server in the
+gateway or “ssh”ing into the gateway.</p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The TCP can allow efficient use of the channel with its
+flow-control algorithms.</p>
+
+<p class=MsoNormal>Disadvantages</p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>It requires more hardware (e.g. volume control circuits, USB
+audio fobs for Alix boards).</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The TCP may utilize the radio channel too much with its control
+data. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Currently the ‘soundmodem’ package is not ready for Bifrost.</p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Initial tests showed that the link is very slow (e.g. 50
+bytes/sec) and not so stable (TCP timeout problems).</p>
+
+<p class=MsoCaption><img width=928 height=224 id="Picture 3"
+src="kth-format-thesis_proposal_v2_rev4_files/image005.png"></p>
+
+<p class=MsoCaption>Figure 4. System diagram for soundmodem solution</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<div style='border:none;border-bottom:solid #95B3D7 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h3>8.2.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>APRS over AX.25</h3>
+
+</div>
+
+<p class=MsoNormal>These solutions use APRS as network and transport layer. The
+measurement data is put into APRS messages and transmitted.</p>
+
+<div style='border:none;border-bottom:solid #B8CCE4 1.0pt;padding:0cm 0cm 2.0pt 0cm'>
+
+<h4>8.2.2.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Solution 5 – APRS</h4>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>Aprs
+solution proposes the transmission of collected data to the APRS network. This
+solution requires the soundmodem software and aprx software running as beacon.
+When the data arrives from the WSN, a small bash script converts this data into
+an APRS telemetry message and transmits it into air. If there are any APRS
+listeners, they will pick-up and probably forward this message to the APRS
+database. For testing this solution, an APRS I-Gate (i.e. RF-to-internet
+forwarder) will also be set up. Below is a predicted list of advantages and
+disadvantages of this proposed solution.</p>
+
+<p class=MsoNormal>Advantages:</p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>This is a completely standard solution.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>This solution can utilize the existing APRS network if there are
+any.</p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>This solution is not so hardware dependent, any kind of radio
+transceiver can be used.</p>
+
+<p class=MsoNormal>Disadvantages:</p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>As told before, soundmodem is not yet ready for Bifrost, so
+Voyage Linux is required.</p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>APRS restrictions may cause data loss, or there may not be enough
+space for our data (e.g. minimum time between consecutive APRS transmissions,
+APRS telemetry allows 5 types of data only).</p>
+
+<p class=MsoCaption><img width=935 height=320 id="Picture 6"
+src="kth-format-thesis_proposal_v2_rev4_files/image006.png"></p>
+
+<p class=MsoCaption>Figure 5. System diagram for APRS solution</p>
+
+<div style='border:none;border-bottom:solid #365F91 1.5pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1>9<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Tasks</h1>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>Below
+is a list of an overview of the tasks for this project. Note that sub-bullet
+points are not requirements, but tasks related to their parents. Also note
+that, tasks do not have to be completed in the written order, details about
+their order can be found in the milestone chart.</p>
+
+<p class=MsoListParagraphCxSpFirst style='text-align:justify;text-justify:inter-ideograph;
+text-indent:-18.0pt'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Implementation of a simple half-duplex link between two Radiometrix transceivers.
+An example of creating such link can be found in a manual from Freie
+Universitat Berlin[45].</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:72.0pt;text-align:justify;
+text-justify:inter-ideograph;text-indent:-18.0pt'>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Implementation of OSI link and network/datagram layers for radiotftp.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:108.0pt;text-align:justify;
+text-justify:inter-ideograph;text-indent:-108.0pt'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>i.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Implementation of radiotftp application (solution 1).</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:144.0pt;text-align:justify;
+text-justify:inter-ideograph;text-indent:-18.0pt'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Porting to Atmega128Rfa1 running Contiki-Os (solution 2).</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:72.0pt;text-align:justify;
+text-justify:inter-ideograph;text-indent:-18.0pt'>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Implementation of radio_tunnel driver application (solution 3). </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:72.0pt;text-align:justify;
+text-justify:inter-ideograph;text-indent:-18.0pt'>c.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>(Optional) Implementation of a ping application.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:108.0pt;text-align:justify;
+text-justify:inter-ideograph;text-indent:-108.0pt'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>i.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Porting to Atmega128Rfa1 running Contiki-Os.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:72.0pt;text-align:justify;
+text-justify:inter-ideograph;text-indent:-18.0pt'>d.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>(Optional) Implementation of a remote shell application like telnet or
+ssh, but a simple one.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:108.0pt;text-align:justify;
+text-justify:inter-ideograph;text-indent:-108.0pt'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>i.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Porting to Atmega128Rfa1 running Contiki-Os.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-justify:
+inter-ideograph;text-indent:-18.0pt'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Testing and verification of soundmodem (e.g. ping).</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:72.0pt;text-align:justify;
+text-justify:inter-ideograph;text-indent:-18.0pt'>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Implementation of bash scripts to supply sending of sensor data (solution
+4).</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:72.0pt;text-align:justify;
+text-justify:inter-ideograph;text-indent:-18.0pt'>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Implementation of bash scripts to convert sensor data into APRS messages
+and send them out with aprx (solution 5).</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-justify:
+inter-ideograph;text-indent:-18.0pt'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Range, power and throughput tests for the implemented solutions.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:72.0pt;text-align:justify;
+text-justify:inter-ideograph;text-indent:-18.0pt'>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Data collection and comparison from these tests.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-justify:
+inter-ideograph;text-indent:-18.0pt'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Preparation of the Final Report.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-justify:
+inter-ideograph;text-indent:-18.0pt'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Setting up a public repository for source codes and hardware designs
+(e.g. Github, sourceforge, Google Code).</p>
+
+<p class=MsoListParagraphCxSpLast style='text-align:justify;text-justify:inter-ideograph;
+text-indent:-18.0pt'>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Setting up a website.</p>
+
+<div style='border:none;border-bottom:solid #365F91 1.5pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1>10<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span>Milestone
+Chart</h1>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'>The
+thesis study starts on 19<sup>th</sup> of February 2012 and end 20 weeks later,
+which is about 6<sup>th</sup> of July. There will be the following milestones
+and deliverables. Project may extend depending on the conditions of the
+project.</p>
+
+<p class=MsoListParagraphCxSpFirst style='text-align:justify;text-justify:inter-ideograph;
+text-indent:-18.0pt'><span style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>8<sup>th</sup> of March: Bifrost workshop at KTH</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-justify:
+inter-ideograph;text-indent:-18.0pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>15<sup>th</sup> of March: End of initial study</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-justify:
+inter-ideograph;text-indent:-18.0pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>15<sup>th</sup> of April: End of Task 1.a</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-justify:
+inter-ideograph;text-indent:-18.0pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>29<sup>th</sup> of April: End of Task 1.a.i (solution 1,
+radiotftp)</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-justify:
+inter-ideograph;text-indent:-18.0pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>5<sup>th</sup> of May: End of Task 2.a (solution 4, soundmodem)</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-justify:
+inter-ideograph;text-indent:-18.0pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>9<sup>th</sup> of May: IST-Africa</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-justify:
+inter-ideograph;text-indent:-18.0pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>7<sup>th</sup> of June: End of Task 1.b (solution 3, radio_tunnel)</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-justify:
+inter-ideograph;text-indent:-18.0pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>14<sup>th</sup> of June: End of Task 1.a.i.1 (solution 2,
+radiotftp_process)</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-justify:
+inter-ideograph;text-indent:-18.0pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>21<sup>st</sup> of June: End of Task 2.b (solution 5, APRS)</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-justify:
+inter-ideograph;text-indent:-18.0pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>1<sup>st</sup> of July: End of Task 3.a (data collection)</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-justify:
+inter-ideograph;text-indent:-18.0pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>3<sup>rd</sup> of September: Final report, presentation and
+demonstration</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-justify:
+inter-ideograph;text-indent:-18.0pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>5<sup>th</sup> of September: Completed design reviews and documentation</p>
+
+<p class=MsoListParagraphCxSpLast style='text-align:justify;text-justify:inter-ideograph;
+text-indent:-18.0pt'><span style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>7<sup>th</sup> of September: Hardware and software designs
+submitted to an agreed repository</p>
+
+<div style='border:none;border-bottom:solid #365F91 1.5pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1>11<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span>References</h1>
+
+</div>
+
+<p class=MsoBibliography>[1]       W. Dargie and C. Poellabauer, <i>Fundamentals of wireless sensor networks&#8239;: theory and practice</i>. Chichester, West Sussex, U.K.: Wiley, 2010.</p>
+
+<p class=MsoBibliography>[2]       K. Sohraby, D. Minoli, and T. Znati, <i>Wireless
+sensor networks&#8239;: technology, protocols, and applications.</i>
+Hoboken,N.J.: John Wiley &amp; Sons, 2007.</p>
+
+<p class=MsoBibliography>[3]      “ATmega128RFA1- Atmel Corporation.” [Online].
+Available: http://www.atmel.com/devices/ATMEGA128RFA1.aspx. [Accessed:
+21-Feb-2012].</p>
+
+<p class=MsoBibliography>[4]      “IL2213 WSN-Projects Fall 2011.” [Online].
+Available: http://www.tslab.ssvl.kth.se/csd/files/wsn/index.html. [Accessed:
+21-Feb-2012].</p>
+
+<p class=MsoBibliography>[5]      “The Contiki OS.” [Online]. Available:
+http://www.contiki-os.org/. [Accessed: 29-Feb-2012].</p>
+
+<p class=MsoBibliography>[6]      “TinyOS Home Page.” [Online]. Available:
+http://www.tinyos.net/. [Accessed: 29-Feb-2012].</p>
+
+<p class=MsoBibliography>[7]       P. Levis, “TinyOS Programming.” 20061027.</p>
+
+<p class=MsoBibliography>[8]       D. Gay, P. Levis, D. Culler, and E. Brewer,
+“nesC 1.1 Language Reference Manual.” 20030501.</p>
+
+<p class=MsoBibliography>[9]      “IEEE 802.15.4.” [Online]. Available:
+http://www.ieee802.org/15/pub/TG4.html. [Accessed: 21-Feb-2012].</p>
+
+<p class=MsoBibliography>[10]    A. Dunkels, F. Österlind, and Z. He, “An
+adaptive communication architecture for wireless sensor networks,” 2007, p.
+335.</p>
+
+<p class=MsoBibliography>[11]    R. Olsson and J. Laas, <i>Sensd</i>. 20120610.</p>
+
+<p class=MsoBibliography>[12]   “PC Engines alix2d13 product file.” [Online].
+Available: http://pcengines.ch/alix2d13.htm. [Accessed: 21-Feb-2012].</p>
+
+<p class=MsoBibliography>[13]   “Bifrost/Linux resources.” [Online]. Available:
+http://bifrost.slu.se/. [Accessed: 21-Feb-2012].</p>
+
+<p class=MsoBibliography>[14]   “Voyage Linux | { x86 Embedded Linux = Green
+computing }.” [Online]. Available: http://linux.voyage.hk/. [Accessed:
+24-May-2012].</p>
+
+<p class=MsoBibliography>[15]   “Part 97 - Amateur Radio.” [Online]. Available:
+http://www.arrl.org/part-97-amateur-radio. [Accessed: 24-May-2012].</p>
+
+<p class=MsoBibliography>[16]   “Definition: manchester code.” [Online].
+Available: http://www.its.bldrdoc.gov/fs-1037/dir-022/_3206.htm. [Accessed:
+25-May-2012].</p>
+
+<p class=MsoBibliography>[17]    A. Telephone and T. Company, <i>Data sets 202S
+and 202T interface specification</i>. The Company, 1976.</p>
+
+<p class=MsoBibliography>[18]    William A. Beech, Douglas E. Nielsen, and Jack
+Taylor, “AX.25 Link Access Protocol for Amateur Packet Radio.” .</p>
+
+<p class=MsoBibliography>[19]    Alan Crosswell, “APRS from the Bottom Up.”
+20021230.</p>
+
+<p class=MsoBibliography>[20]   “Multiplatform Soundcard Packet Radio Modem
+Driver Software.” [Online]. Available: http://www.baycom.org/~tom/ham/soundmodem/.
+[Accessed: 25-May-2012].</p>
+
+<p class=MsoBibliography>[21]   “Ethernet Technologies - DocWiki.” [Online].
+Available: http://docwiki.cisco.com/wiki/Ethernet_Technologies. [Accessed:
+25-May-2012].</p>
+
+<p class=MsoBibliography>[22]    IETF, “Internet Protocol, Version 6 (IPv6)
+Specification.” [Online]. Available: http://www.ietf.org/rfc/rfc2460.txt.
+[Accessed: 25-May-2012].</p>
+
+<p class=MsoBibliography>[23]    APRS Working Group, “APRS Protocol Reference
+Version 1.0.” Tucson Amateur Radio Corp, 2000.</p>
+
+<p class=MsoBibliography>[24]   “Google Maps APRS.” [Online]. Available:
+http://aprs.fi/. [Accessed: 25-May-2012].</p>
+
+<p class=MsoBibliography>[25]   “Aprx.en – HamFi.” [Online]. Available:
+http://wiki.ham.fi/Aprx.en#Installation. [Accessed: 25-May-2012].</p>
+
+<p class=MsoBibliography>[26]    M. Krasnyansky and M. Yevmenkin, “Universal
+TUN/TAP device driver.” [Online]. Available:
+http://www.kernel.org/doc/Documentation/networking/tuntap.txt. [Accessed:
+25-May-2012].</p>
+
+<p class=MsoBibliography>[27]   “Universal TUN/TAP driver - FAQ.” [Online].
+Available: http://vtun.sourceforge.net/tun/faq.html. [Accessed: 25-May-2012].</p>
+
+<p class=MsoBibliography>[28]   “MAAS-AHT-2-UV-Handfunkgeraet-VHF-UHF.”
+[Online]. Available: http://maas-elektronik.de/MAAS-AHT-2-UV-Handfunkgeraet-VHF-UHF.2.html.
+[Accessed: 25-May-2012].</p>
+
+<p class=MsoBibliography>[29]   “YAESU FT-8900R.” [Online]. Available:
+http://www.yaesu.com/indexvs.cfm?cmd=DisplayProducts&amp;ProdCatID=106&amp;encProdID=0C4855ADE6394D514EAABAE148B93F5C&amp;DivisionID=65&amp;isArchived=0.
+[Accessed: 25-May-2012].</p>
+
+<p class=MsoBibliography>[30]   “Radiometrix - Radio Modules - RF Modules -
+Wireless Modules | BiM2A.” [Online]. Available:
+http://www.radiometrix.com/content/bim2a. [Accessed: 21-Feb-2012].</p>
+
+<p class=MsoBibliography>[31]   “Radiometrix - Radio Modules - RF Modules -
+Wireless Modules | UHX1.” [Online]. Available:
+http://www.radiometrix.com/node/184. [Accessed: 25-May-2012].</p>
+
+<p class=MsoBibliography>[32]    C-MEDIA ELECTRONICS INC., “CM108 High
+Integrated USB Audio I/O Controller.” 20070213.</p>
+
+<p class=MsoBibliography>[33]    Future Technology Devices International
+Limited (FTDI), “TTL to USB Serial Converter Range of Cables Datasheet.”
+20100902.</p>
+
+<p class=MsoBibliography>[34]    G. Werner-Allen, K. Lorincz, M. Ruiz, O.
+Marcillo, J. Johnson, J. Lees, and M. Welsh, “Deploying a wireless sensor
+network on an active volcano,” <i>Internet Computing, IEEE</i>, vol. 10, no. 2,
+pp. 18 – 25, Apr. 2006.</p>
+
+<p class=MsoBibliography>[35]    G. Werner-Allen, J. Johnson, M. Ruiz, J. Lees,
+and M. Welsh, “Monitoring volcanic eruptions with a wireless sensor network,”
+in <i>Wireless Sensor Networks, 2005. Proceeedings of the Second European
+Workshop on</i>, 2005, pp. 108 – 120.</p>
+
+<p class=MsoBibliography>[36]   “Ranger&#8239;: FreeWave Technologies.”
+[Online]. Available:
+http://www.freewave.com/products/allproducts/rangerseries.aspx. [Accessed:
+25-May-2012].</p>
+
+<p class=MsoBibliography>[37]    A. Mainwaring, D. Culler, J. Polastre, R.
+Szewczyk, and J. Anderson, “Wireless sensor networks for habitat monitoring,”
+2002, p. 88.</p>
+
+<p class=MsoBibliography>[38]    T. L. Dinh, W. Hu, P. Sikka, P. Corke, L.
+Overs, and S. Brosnan, “Design and Deployment of a Remote Robust Sensor
+Network: Experiences from an Outdoor Water Quality Monitoring Network,” 2007,
+pp. 799–806.</p>
+
+<p class=MsoBibliography>[39]    T. Naumowicz, R. Freeman, H. Kirk, B. Dean, M.
+Calsyn, A. Liers, A. Braendle, T. Guilford, and J. Schiller, “Wireless Sensor
+Network for habitat monitoring on Skomer Island,” in <i>Local Computer Networks
+(LCN), 2010 IEEE 35th Conference on</i>, 2010, pp. 882 –889.</p>
+
+<p class=MsoBibliography>[40]    M. Dormer, “Your Data Over a Simple Radio
+Link.” Electronics World Magazine, 200703.</p>
+
+<p class=MsoBibliography>[41]   “THE TFTP PROTOCOL (REVISION 2).” [Online].
+Available: http://www.ietf.org/rfc/rfc1350.txt. [Accessed: 26-May-2012].</p>
+
+<p class=MsoBibliography>[42]   “The OSI Model’s Seven Layers Defined and
+Functions Explained.” [Online]. Available:
+http://support.microsoft.com/kb/103884. [Accessed: 29-Feb-2012].</p>
+
+<p class=MsoBibliography>[43]   “User Datagram Protocol.” [Online]. Available:
+http://www.ietf.org/rfc/rfc768.txt. [Accessed: 26-May-2012].</p>
+
+<p class=MsoBibliography>[44]   “LinuxHam.” [Online]. Available:
+http://www.linux-ax25.org/wiki/Main_Page. [Accessed: 26-May-2012].</p>
+
+<p class=MsoBibliography>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>
