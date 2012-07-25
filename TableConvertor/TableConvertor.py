@@ -5,8 +5,8 @@ exports mysql Tables to different types of files
 
 from openpyxl.workbook import Workbook
 from openpyxl.writer.excel import ExcelWriter
-
 from openpyxl.cell import get_column_letter
+from idLogTable import idLogTable
 
 def saveAsTXT(table, path):
     try:
@@ -48,5 +48,5 @@ def saveAsHTML(table, path):
 
 if __name__ == "__main__":
     print 'hello'
-    saveAsXLSX('alp', 'alp.xlsx')
+    saveAsXLSX(dummyTable, 'alp.xlsx')
     print 'bye bye'
