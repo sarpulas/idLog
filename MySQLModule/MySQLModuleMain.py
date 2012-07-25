@@ -173,6 +173,21 @@ def pullByDateRange(after,before):
     cur=executeQueryWithHandling(queryString)
     printResult(cur)
 
+def pullByKeyword(keyword):
+    """Searches the content of the messages for the given keyword.
+    input : Keyword combination 
+          : So far, only one keyword :D"""
+    queryString="SELECT * FROM Log WHERE INSTR(Content,'%s') > 0" % keyword
+    cur=executeQueryWithHandling(queryString)
+    printResult(cur)
+
+def pullByID(id):
+    """Pull a log entry by its ID
+    input: ID of the desired log entry"""
+    queryString="SELECT * FROM Log WHERE ID = %s" % (id)
+    cur=executeQueryWithHandling(queryString)
+    printResult(cur) 
+
 print "beginning..."
 connection=checkPassword('alpsayin_test','sayin')
 if connection is 1:
@@ -185,7 +200,9 @@ if connection is 1:
     #pullCategories()
     #pullAll()
     #pullLast(1)
-    pullByDateRange("24/07/2012","26/07/2012")
+    #pullByDateRange("24/07/2012","26/07/2012")
+    #pullByKeyword('yeah f')
+    pullByID(1)
     print "closing connection"
     closeConnection()
 print "program completed..."      
