@@ -46,6 +46,7 @@ def pushCategory(category):
         con.commit()
     
 def pullCategories():
+    """Function to fetch the list of all categories"""
     cur=con.cursor()
     
     try: 
