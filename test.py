@@ -5,4 +5,6 @@ def reverse(data):
 if __name__ == "__main__":
     import sys
     for char in reverse('golf'):
-      print char
+      print char 
+      
+    print "gtest"
