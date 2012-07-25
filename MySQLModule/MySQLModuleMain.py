@@ -47,7 +47,7 @@ def pushCategory(category):
     
 def pullCategories():
     """Function to fetch the list of all categories"""
-    cur=con.cursor()
+    cur=con.cursor(mdb.cursors.DictCursor)
     
     try: 
         cur.execute("SELECT * FROM Categories")
@@ -55,10 +55,10 @@ def pullCategories():
         print "Error %d: %s" % (e.args[0],e.args[1])
         sys.exit(1)
     finally:    
-        rows = cur.fetchall()
         print "pulled categories:\n"
+        rows = cur.fetchall()
         for row in rows:
-            print row
+            print "%s %s" % (row["ID"], row["Category_Name"])
  
 def closeConnection(): 
     """Used to close the ongoing connection"""  
