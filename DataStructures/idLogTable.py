@@ -12,13 +12,50 @@ class idLogTable():
         '''
         Constructor
         Only initializes _rows and _cols
+        parms:
+            headers_vect: a vector containing the header titles
         '''
         self._rows = []
         self._cols = headers_vect
         
+    def __str__(self):
+        """
+        __str__
+        returns a string representation of the table
+        """
+        strn = ''
+        for i in range(len(self._cols)):
+            strn = strn + str(self._cols[i])+'\t\t'
+        print
+        for i in range(len(self._rows)):
+            if(len(self._rows[i]) != 0):
+                for j in range(len(self._cols)):
+                        strn = strn + str(self._rows[i][j])+'\t\t'
+                strn = strn + '\n'
+            else:
+                strn = strn + '-\n'
+        return strn
+    
+    def __len__(self):
+        """
+        __len__
+        return the number of rows
+        """
+        return len(self._rows)
+        
     def addRow(self, vect, index=-1):
+        """
+        addRow(vect, index=-1)
+        parms:
+            vect: a vector which contains the row information, its size must be the same
+                as the number of columns or an exception will be thrown
+            index: the index that the row should be inserted
+                if the index is greater than the num of existing rows, empty rows will be inserted between
+                if the index is less then 0, then the row will be appended.
+                if the index is less then num of existing rows, row will be updated
+        """
         if(len(vect) != len(self._cols)):
-            raise Exception('Row Column size mismatch')
+            raise Exception('Row-Length vs. NumOfColumns size mismatch')
         if(index < 0):
             self._rows.append(vect)
         else:
@@ -27,31 +64,66 @@ class idLogTable():
                     self._rows.append([])
             self._rows[index] = vect
 
-    def getRow(self, num):
-        return self._rows[num]
+    def getRow(self, index):
+        """
+        getRow(index)
+        parms:
+            index: index of the row to be returned
+        returns:
+            array containing the row
+        """
+        return self._rows[index]
     
     def removeRow(self, num):
+        """
+        removeRow(index)
+        parms:
+            index: index of the row to be removed
+        """
         self._rows.remove(self._rows[num])
     
     def setHeaders(self, vect):
+        """
+        setHeaders(vect)
+        parms:
+            vect: a vector containing the new header information, the size must be
+                the same as the existing headers, else an exception will be thrown
+        """
         if(len(self._cols) != len(vect)):
             raise Exception('setHeaders column size mismatch')
         self._cols = vect
         
     def getHeaders(self):
+        """
+        getHeaders()
+        returns:
+            a vector containing the headers
+        """
         return self._cols
     
     def getHeadersLength(self):
+        """
+        getHeadersLength()
+        returns:
+            return the length of the headers array
+        """
         return len(self._cols)
     
     def printTable(self):
+        """
+        printTable()
+        prints the table to stdout
+        """
         for i in range(len(self._cols)):
             print self._cols[i]+'\t\t',
         print
         for i in range(len(self._rows)):
-            for j in range(len(self._cols)):
-                print str(self._rows[i][j])+'\t\t',
-            print
+            if(len(self._rows[i]) != 0):
+                for j in range(len(self._cols)):
+                        print str(self._rows[i][j])+'\t\t',
+                print
+            else:
+                print '-'
         
     
 if __name__ == '__main__':
@@ -62,9 +134,11 @@ if __name__ == '__main__':
     dummyTable.addRow([1, 'alpsayin', 'farnell', 'raspberry pi siparisleri verildi'])
     dummyTable.printTable()
     dummyTable.addRow([2, 'alpsayin', 'farnell', 'raspberry pi siparisleri elimize ulasti'])
-    dummyTable.addRow([3, 'umutgultepe', 'g-man', 'some entry'])
+    dummyTable.addRow([3, 'umutgultepe', 'g-man', 'some entry'], 6)
     dummyTable.printTable()
     dummyTable.removeRow(2)
-    dummyTable.printTable()
+    
+    print str(dummyTable)
+    print len(dummyTable)
     
     
