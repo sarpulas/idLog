@@ -55,8 +55,8 @@ def pullCategories():
         print "Error %d: %s" % (e.args[0],e.args[1])
         sys.exit(1)
     finally:    
-        print "pulled categories:\n"
-        rows = cur.fetchall()
+        print "pulled categories:"
+        rows = cur.fetchallDict()
         for row in rows:
             print "%s %s" % (row["ID"], row["Category_Name"])
  
@@ -78,11 +78,52 @@ def clearCategories():
     finally:    
         print  "%s categeories deleted!" % cur.rowcount;
         con.commit()
+
+
+def pullAll():
+    """Pulls all of the log entries from the database
+    ---WARNING: HIGH DATA TRANSFER POSSIBLE-CONSIDER USING pullLast function instead"""
     
+    queryString="SELECT * FROM Log"
+    cur=executeQueryWithHandling(queryString)
+    printResult(cur) 
+         
+def printResult(currentCursor):
+    
+    desc=currentCursor.description  
+    for field in desc:
+        print "%s \t" % field[0] ,
+    print "\n"
+    
+    rows=currentCursor.fetchall()
+    
+    for row in rows:
+        index=0
+        for field in row:
+            print "%s \t" % field,
+            index+=1
+        print "\n"
+   
+def executeQueryWithHandling(queryString): 
+    cur=con.cursor()
+    try: 
+        cur.execute(queryString)
+    except mdb.Error, e: 
+        print "Error %d: %s" % (e.args[0],e.args[1])
+        con.rollback()
+        sys.exit(1)
+    finally:  
+        return cur
+          
+def pullLast(count):
+    """Pulls a number of the latest log entries from the database
+    input    : The number of log entries to be downloaded """
+    queryString="SELECT * FROM Log ORDER BY ID Desc LIMIT %d" % count
+    cur=executeQueryWithHandling(queryString)
+    printResult(cur)     
 
 def pushNewMessage(category,content,preceededBy=None):
     cur = con.cursor()
-    
     cur.execute("INSERT INTO Writers SET Name = %s WHERE Id = %s", ("Guy de Maupasant", "4")) 
 
   
@@ -93,9 +134,11 @@ print "beginning..."
 connection=checkPassword('alpsayin_test','sayin')
 if connection is 1:
     print "initiating process..."
-    pushCategory('IdLog')
+    #pushCategory('IdLog')
     #clearCategories()
     #pullCategories()
+    pullAll()
+    #pullLast(1)
     print "closing connection"
     closeConnection()
 print "program completed..."      
