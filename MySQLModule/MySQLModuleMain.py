@@ -84,17 +84,10 @@ def pullAll():
     """Pulls all of the log entries from the database
     ---WARNING: HIGH DATA TRANSFER POSSIBLE-CONSIDER USING pullLast function instead"""
     
-    cur=con.cursor()
-    try: 
-        cur.execute("SELECT * FROM Log")
-    except mdb.Error, e: 
-        print "Error %d: %s" % (e.args[0],e.args[1])
-        con.rollback()
-        sys.exit(1)
-    finally:  
-        printResult(cur) 
-        
-   
+    queryString="SELECT * FROM Log"
+    cur=executeQueryWithHandling(queryString)
+    printResult(cur) 
+         
 def printResult(currentCursor):
     
     desc=currentCursor.description  
@@ -111,20 +104,23 @@ def printResult(currentCursor):
             index+=1
         print "\n"
    
-    
-            
-def pullLast(count):
-    """Pulls a number of the latest log entries from the database
-    input    : The number of log entries to be downloaded """
+def executeQueryWithHandling(queryString): 
     cur=con.cursor()
     try: 
-        cur.execute("SELECT * FROM Log ORDER BY ID Desc LIMIT %d" % count)
+        cur.execute(queryString)
     except mdb.Error, e: 
         print "Error %d: %s" % (e.args[0],e.args[1])
         con.rollback()
         sys.exit(1)
     finally:  
-        printResult(cur)          
+        return cur
+          
+def pullLast(count):
+    """Pulls a number of the latest log entries from the database
+    input    : The number of log entries to be downloaded """
+    queryString="SELECT * FROM Log ORDER BY ID Desc LIMIT %d" % count
+    cur=executeQueryWithHandling(queryString)
+    printResult(cur)     
 
 def pushNewMessage(category,content,preceededBy=None):
     cur = con.cursor()
