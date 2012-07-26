@@ -8,19 +8,24 @@ import sys
 import MySQLdb as mdb
 from datetime import datetime
 
+"""Tables are as following:
 
+
+"""
 
 ip='67.228.247.186'
 dbName= 'alpsayin_idtest'
 con = None
-currentTable=None;
+currentTable=None
+userName=None
 
-
-def checkPassword(username,password):
+def checkPassword(user,password):
      """Function for logging into the database"""   
      global con    
+     global userName
+     userName=user
      try:
-         con = mdb.connect(ip, username,password, dbName)
+         con = mdb.connect(ip, userName,password, dbName)
      except mdb.Error, e: 
         print "Error %d: %s" % (e.args[0],e.args[1])
         sys.exit(1)
@@ -34,11 +39,16 @@ def checkPassword(username,password):
                
 def pushCategory(category):
     """Used to insert a new category to the table
+    Returns the ID of the pushed Category
     ----FOR INTERNAL USE ONLY----"""    
     queryString="INSERT INTO Categories(Category_Name) VALUES('%s')" % category
     cur=executeQueryWithHandling(queryString)
     print  "%s categeory pushed!" % cur.rowcount;
     con.commit()    
+    queryString="SELECT ID FROM Categories WHERE Category_Name='%s'" % category
+    cur=executeQueryWithHandling(queryString)
+    idRow=cur.fetchone()
+    return idRow[0]
 
 def pullCategories():
     """Function to fetch the list of all categories
@@ -66,7 +76,7 @@ def pullAll():
     
     queryString="SELECT * FROM Log"
     cur=executeQueryWithHandling(queryString)
-    printResult(cur) 
+    return cur
          
 def printResult(currentCursor):
     """Convenient method for printing the results of a query
@@ -105,13 +115,15 @@ def pullLast(count):
     input    : The number of log entries to be downloaded """
     queryString="SELECT * FROM Log ORDER BY ID Desc LIMIT %d" % count
     cur=executeQueryWithHandling(queryString)
-    printResult(cur)     
+    return cur    
 
 def pullSystemTime():
-    """Used to acquire the system time"""
+    """Used to acquire the system time
+    Returns the current time stamp in string form"""
     queryString="SELECT CURRENT_TIMESTAMP"
     cur=executeQueryWithHandling(queryString)
-    printResult(cur)
+    timeRow=cur.fetchone()
+    return timeRow[0]
 
 def getCategoryID(categoryName):
     """Returns the ID of a category specified with its name"""
@@ -150,17 +162,13 @@ def pullByCategory(category,n=20):
     
     queryString="SELECT * FROM Log WHERE CATEGORY = %s LIMIT %s" % (id,n)
     cur=executeQueryWithHandling(queryString)
-    printResult(cur) 
+    return cur
     
 def pullNumOfEntries():
     """Method for geting the total number of entries"""
     queryString="SELECT COUNT(ID) FROM Log"
     cur=executeQueryWithHandling(queryString)
-    printResult(cur)
-
-def pushNewMessage(category,content,preceededBy=None):
-    cur = con.cursor()
-    cur.execute("INSERT INTO Writers SET Name = %s WHERE Id = %s", ("Guy de Maupasant", "4")) 
+    return cur
 
 def pullByDateRange(after,before):
     """Function to pull all the entries between two dates
@@ -171,7 +179,7 @@ def pullByDateRange(after,before):
     print earlyValue
     queryString= "SELECT * FROM Log WHERE CreationDate > '%s' AND CreationDate < '%s'" % (earlyValue.strftime("%Y-%m-%d"),lateValue.strftime("%Y-%m-%d"))
     cur=executeQueryWithHandling(queryString)
-    printResult(cur)
+    return cur
 
 def pullByKeyword(keyword):
     """Searches the content of the messages for the given keyword.
@@ -179,22 +187,63 @@ def pullByKeyword(keyword):
           : So far, only one keyword :D"""
     queryString="SELECT * FROM Log WHERE INSTR(Content,'%s') > 0" % keyword
     cur=executeQueryWithHandling(queryString)
-    printResult(cur)
-
+    return cur
+    
 def pullByID(id):
     """Pull a log entry by its ID
     input: ID of the desired log entry"""
     queryString="SELECT * FROM Log WHERE ID = %s" % (id)
     cur=executeQueryWithHandling(queryString)
-    printResult(cur) 
+    return cur
+
+def pushNewMessage(category,content,succeeding=None):
+    """Used to push a new log message 
+    input   : Category Name (New category will be created automatically if it is a new category
+            : Content of the log entry
+            : The preceeding entry ID, should be given in integer form."""   
+    categoryID=getCategoryID(category)
+    
+    if categoryID is None:
+        categoryID=pushCategory(category)
+    
+    curTime=pullSystemTime()
+    print userName
+    
+    if succeeding is None:
+        queryString="INSERT INTO Log(User,CreationDate,Category,Content) VALUES('%s','%s','%d','%s')" % (userName,curTime,categoryID,content)
+        cur=executeQueryWithHandling(queryString)
+        con.commit()
+    else:
+        queryString="INSERT INTO Log(User,CreationDate,Category,Content,PreceededBy) VALUES('%s','%s','%s','%s','%s')" % (userName,curTime,categoryID,content,succeeding)
+        cur=executeQueryWithHandling(queryString)
+        queryString="SELECT ID FROM Log WHERE CreationDate = '%s'" % curTime
+        cur=executeQueryWithHandling(queryString)
+        idRow=cur.fetchone()
+        newID=idRow[0]
+        queryString="UPDATE Log SET SucceededBy = %d WHERE ID = %d" % (newID,succeeding)
+        cur=executeQueryWithHandling(queryString)
+        con.commit()
+        
+def pullByUser(user,n=20):
+    """Pull a number of latest entries by a given user.
+    input   : The name of the user
+            : The number of entries to be pulled (default is 20)"""
+    queryString="SELECT * FROM Log WHERE User = '%s' ORDER BY ID Desc LIMIT %d" % (user,n)
+    cur=executeQueryWithHandling(queryString)     
+    return cur
+    
+
 
 print "beginning..."
 connection=checkPassword('alpsayin_test','sayin')
 if connection is 1:
     print "initiating process..."
-    #pushCategory('IdLog')
+    #print pushCategory('IdLogXY')
     #clearCategories()
-    #pullSystemTime()
+    #print pullSystemTime()
+    #pushNewMessage('IdLogX','TestRun5')
+    cur=pullByUser(userName)
+    printResult(cur)
     #print getCategoryID('test')
     #pullByCategory('test')
     #pullCategories()
@@ -202,7 +251,7 @@ if connection is 1:
     #pullLast(1)
     #pullByDateRange("24/07/2012","26/07/2012")
     #pullByKeyword('yeah f')
-    pullByID(1)
+    #pullByID(1)
     print "closing connection"
     closeConnection()
 print "program completed..."      
