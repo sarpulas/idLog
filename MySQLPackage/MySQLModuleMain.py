@@ -8,6 +8,7 @@ import sys
 import MySQLdb as mdb
 from datetime import datetime
 from idLogTable import idLogTable
+from idLogMessage import idLogMessage
 """Tables in tha database should be as following:
 
 Log Table
@@ -212,6 +213,31 @@ def pullByID(id):
     cur=executeQueryWithHandling(queryString)
     return cur
 
+def convertSucPrecListToString(spList):
+    """Method to convert the integer, integer list or None to comma seperated values for server
+    returns None is the input is None, else returns a stirng with comma seperated values"""
+    if spList is None:
+        return None
+    else:
+        resList=None
+        if type(spList) is int:
+            resList = "%d" % spList
+        else:
+            resList=",".join(["%d" % (i) for i in spList])  
+        return resList
+
+def convertSucPrecListToIntList(spList):
+    """Method to convert the  comma seperated string values to integer list for usage
+    returns None is the input is None, else returns an integer list depending on the input value count"""
+    if spList is not None:
+        stringListPreceeders=spList.split(",")
+        listPreceeders=[]
+        for strs in stringListPreceeders:
+            listPreceeders.append(int(strs))
+        return listPreceeders
+    else:
+        return None                       
+                 
 def pushNewMessage(category,content,succeeding=None):
     """Used to push a new log message 
     input   : Category Name (New category will be created automatically if it is a new category
@@ -230,11 +256,7 @@ def pushNewMessage(category,content,succeeding=None):
         cur=executeQueryWithHandling(queryString)
         con.commit()
     else:
-        preceedString=None
-        if type(succeeding) is int:
-            preceedString = "%d" % succeeding
-        else:
-            preceedString=",".join(["%d" % (i) for i in succeeding])  
+        preceedString=convertSucPrecListToString(succeeding)
         queryString="INSERT INTO Log(User,CreationDate,Category,Content,PreceededBy) VALUES('%s','%s','%s','%s','%s')" % (userName,curTime,categoryID,content,preceedString)
         cur=executeQueryWithHandling(queryString)
         queryString="SELECT ID FROM Log WHERE CreationDate = '%s'" % curTime
@@ -291,19 +313,14 @@ def pullPreceeding(mainID):
     tCol=cur.fetchone()
     stringPreceeders=tCol[0]
     if stringPreceeders is not None:
-        stringListPreceeders=stringPreceeders.split(",")
-        listPreceeders=[]
-        for strs in stringListPreceeders:
-                listPreceeders.append(int(strs))
-        
+        listPreceeders=convertSucPrecListToIntList(stringPreceeders)
         idString=" OR ".join(["ID = %d" % (i) for i in listPreceeders])     
         queryString="SELECT * FROM Log WHERE %s" % idString
         cur=executeQueryWithHandling(queryString)    
         return cur
     else: 
-        return None
-    
-    
+        return None    
+
 def pullSucceeding(mainID):
     """Brings the entries defined as succeeding for the entry specified by the input id
     input  : The successor ID
@@ -313,11 +330,7 @@ def pullSucceeding(mainID):
     tCol=cur.fetchone()
     stringPreceeders=tCol[0]
     if stringPreceeders is not None:
-        stringListPreceeders=stringPreceeders.split(",")
-        listPreceeders=[]
-        for strs in stringListPreceeders:
-                listPreceeders.append(int(strs))
-        
+        listPreceeders=convertSucPrecListToIntList(stringPreceeders)
         idString=" OR ".join(["ID = %d" % (i) for i in listPreceeders])     
         queryString="SELECT * FROM Log WHERE %s" % idString
         cur=executeQueryWithHandling(queryString)    
@@ -325,6 +338,35 @@ def pullSucceeding(mainID):
     else: 
         return None
          
+def modifyMessage(message):
+    """Recieve a message from the user, and update an existing entry"""
+    """Throws an exception if the modifying user is not the same as the creator user"""
+    messageID= message.getId()
+    messageUser=message.getUser()
+    queryString="SELECT User FROM Log WHERE ID = '%d'" % messageID
+    cur=executeQueryWithHandling(queryString)
+    user=cur.fetchone()[0]
+    if user == messageUser:  
+        messageCategory=int(message.getCategory())
+        messageString=message.getContent()
+        messageSuccessors=convertSucPrecListToString(message.getSucceededBy())
+        messagePreceeders=convertSucPrecListToString(message.getPreceededBy())  
+        messageActivation=message.isActive()
+        queryString="UPDATE Log SET Category = %d , Content = '%s' , PreceededBy = '%s' , SucceededBy = '%s' , ActiveFlag = %s WHERE ID = '%d'" % (messageCategory,messageString,messagePreceeders,messageSuccessors,messageActivation,messageID)
+        cur=executeQueryWithHandling(queryString)
+        con.commit()
+    else:
+        raise Exception("The modifying user is not the same as original user")    
+        
+def listToMessage(sourceRow):
+    """Convert a given result row to a message
+    Returns the created Message"""
+    [id,User,CD,LD,Category,Content,PBS,SBS,AF]=sourceRow
+    PBI=convertSucPrecListToIntList(PBS)
+    SBI=convertSucPrecListToIntList(SBS)
+    argList=[id,User,CD,LD,Category,Content,PBI,SBI,AF]
+    return idLogMessage(argList)
+    
 print "beginning..."
 connection=checkPassword('alpsayin_test','sayin')
 if connection is 1:
@@ -332,13 +374,15 @@ if connection is 1:
     #print pushCategory('IdLogXY')
     #clearCategories()
     #print pullSystemTime()
-    #pushNewMessage('IdLogX','TestRun6',10)
+    #pushNewMessage('IdLogX','TestRun8',[22,25])
     #cur=pullByUser(userName)
-    cur=pullSucceeding(10)
-    if cur is None:
-        print "No Preceeders!"
-    else:
-        printResult(cur)
+    #listToMessage(cur.fetchone())
+    cur=pullSucceeding(22)
+    #printResult(cur)
+    mess=listToMessage(cur.fetchone())
+    mess.setActive(0)
+    mess.setUser('dopq')
+    modifyMessage(mess)
     #cursorToTable(cur)
     #print getCategoryID('test')
     #pullByCategory('test')
