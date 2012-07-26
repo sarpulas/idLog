@@ -116,6 +116,10 @@ class idLogMessage():
         return self._active
     
     def setActive(self, active):
+        """
+        isActive()
+        sets the active field to the input boolean value
+        """
         self._active = active
     
     def setUser(self, username):
