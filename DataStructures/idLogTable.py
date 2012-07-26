@@ -11,15 +11,15 @@ class idLogTable():
         _rows : list of lists
         _cols : list of strings
     '''
-    def __init__(self, headers_vect):
+    def __init__(self, headers_list):
         '''
         Constructor
         Only initializes _rows and _cols
         parms:
-            headers_vect: a vector containing the header titles
+            headers_list: a list containing the header titles
         '''
         self._rows = []
-        self._cols = headers_vect
+        self._cols = headers_list
         
     def __str__(self):
         """
@@ -46,26 +46,26 @@ class idLogTable():
         """
         return len(self._rows)
         
-    def addRow(self, vect, index=-1):
+    def addRow(self, list, index=-1):
         """
-        addRow(vect, index=-1)
+        addRow(list, index=-1)
         parms:
-            vect: a vector which contains the row information, its size must be the same
+            list: a list which contains the row information, its size must be the same
                 as the number of columns or an exception will be thrown
             index: the index that the row should be inserted
                 if the index is greater than the num of existing rows, empty rows will be inserted between
                 if the index is less then 0, then the row will be appended.
                 if the index is less then num of existing rows, row will be updated
         """
-        if(len(vect) != len(self._cols)):
+        if(len(list) != len(self._cols)):
             raise Exception('Row-Length vs. NumOfColumns size mismatch')
         if(index < 0):
-            self._rows.append(vect)
+            self._rows.append(list)
         else:
             if(index > len(self._rows)):
                 while(len(self._rows) <= index):
                     self._rows.append([])
-            self._rows[index] = vect
+            self._rows[index] = list
 
     def getRow(self, index):
         """
@@ -85,22 +85,22 @@ class idLogTable():
         """
         self._rows.remove(self._rows[num])
     
-    def setHeaders(self, vect):
+    def setHeaders(self, list):
         """
-        setHeaders(vect)
+        setHeaders(list)
         parms:
-            vect: a vector containing the new header information, the size must be
+            list: a list containing the new header information, the size must be
                 the same as the existing headers, else an exception will be thrown
         """
-        if(len(self._cols) != len(vect)):
+        if(len(self._cols) != len(list)):
             raise Exception('setHeaders column size mismatch')
-        self._cols = vect
+        self._cols = list
         
     def getHeaders(self):
         """
         getHeaders()
         returns:
-            a vector containing the headers
+            a list containing the headers
         """
         return self._cols
     
