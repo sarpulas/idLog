@@ -11,7 +11,7 @@ from idLogTable import idLogTable
 def saveAsTXT(table, path):
     try:
         outputFile = open(path, 'w+')
-        
+        outputFile.write(str(table))
         outputFile.close()
     except:
         print 'Output file could not be opened'
@@ -23,15 +23,15 @@ def saveAsXLSX(table, path):
     entrySheet.title = 'Entries'
     entrySheet.cell('A1').value = 'Alp'
     
-    for col_idx in xrange(1, 40):
+    for col_idx in xrange(1, table.getHeadersLength()+1):
         col = get_column_letter(col_idx)
-        for row in xrange(1, 600):
-            entrySheet.cell('%s%s'%(col, row)).value = '%s%s' % (col, row)
+        entrySheet.cell('%s%s'%(col, 1)).value = table.getHeaders()[col_idx-1]
     
-    wb.create_sheet()
-    catSheet = wb.worksheets[1]
-    catSheet.title = 'Categories'
-    catSheet.cell('A1').value = 'Sayin'
+    for row in xrange(2,len(table)+2):
+        rowList = table.getRow(row-2)
+        for col_idx in xrange(1,len(rowList)+1):
+            col = get_column_letter(col_idx)
+            entrySheet.cell('%s%s'%(col, row)).value = rowList[col_idx-1]
     
     wb.save(filename = path)
     
@@ -48,5 +48,12 @@ def saveAsHTML(table, path):
 
 if __name__ == "__main__":
     print 'hello'
+    dummyTable = idLogTable(['id', 'username', 'category', 'blabla'])
+    dummyTable.setHeaders(['id', 'username', 'category', 'content'])
+    dummyTable.addRow([1, 'alpsayin', 'farnell', 'raspberry pi siparisleri verildi'])
+    dummyTable.addRow([2, 'alpsayin', 'farnell', 'raspberry pi siparisleri elimize ulasti'])
+    dummyTable.addRow([3, 'umutgultepe', 'g-man', 'some entry'], 6)
+#    dummyTable.printTable()
+    saveAsTXT(dummyTable, 'alp.txt')
     saveAsXLSX(dummyTable, 'alp.xlsx')
     print 'bye bye'
