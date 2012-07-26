@@ -6,6 +6,7 @@ exports mysql Tables to different types of files
 from openpyxl.workbook import Workbook
 from openpyxl.writer.excel import ExcelWriter
 from openpyxl.cell import get_column_letter
+from datetime import datetime
 from idLogTable import idLogTable
 
 def saveAsTXT(table, path):
@@ -47,11 +48,11 @@ def saveAsHTML(table, path):
 
 if __name__ == "__main__":
     print 'hello'
-    dummyTable = idLogTable(['id', 'username', 'category', 'blabla'])
-    dummyTable.setHeaders(['id', 'username', 'category', 'content'])
-    dummyTable.addRow([1, 'alpsayin', 'farnell', 'raspberry pi siparisleri verildi'])
-    dummyTable.addRow([2, 'alpsayin', 'farnell', 'raspberry pi siparisleri elimize ulasti'])
-    dummyTable.addRow([3, 'umutgultepe', 'g-man', 'some entry'], 6)
+    dummyTable = idLogTable(['id', 'username', 'category', 'blabla', 'created'])
+    dummyTable.setHeaders(['id', 'username', 'category', 'content', 'created'])
+    dummyTable.addRow([1, 'alpsayin', 'farnell', 'raspberry pi siparisleri verildi', datetime.now()])
+    dummyTable.addRow([2, 'alpsayin', 'farnell', 'raspberry pi siparisleri elimize ulasti', datetime.now()])
+    dummyTable.addRow([3, 'umutgultepe', 'g-man', 'some entry', datetime.now()], 6)
 #    dummyTable.printTable()
     saveAsTXT(dummyTable, 'alp.txt')
     saveAsXLSX(dummyTable, 'alp.xlsx')
