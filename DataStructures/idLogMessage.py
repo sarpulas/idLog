@@ -65,6 +65,9 @@ class idLogMessage():
     def isActive(self):
         return self._active
     
+    def setActive(self, active):
+        self._active = active
+    
     def setUser(self, username):
         self._user = username
         
