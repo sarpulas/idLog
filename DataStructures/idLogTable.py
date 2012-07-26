@@ -46,26 +46,26 @@ class idLogTable():
         """
         return len(self._rows)
         
-    def addRow(self, list, index=-1):
+    def addRow(self, rowList, index=-1):
         """
-        addRow(list, index=-1)
+        addRow(rowList, index=-1)
         parms:
-            list: a list which contains the row information, its size must be the same
+            rowList: a rowList which contains the row information, its size must be the same
                 as the number of columns or an exception will be thrown
             index: the index that the row should be inserted
                 if the index is greater than the num of existing rows, empty rows will be inserted between
                 if the index is less then 0, then the row will be appended.
                 if the index is less then num of existing rows, row will be updated
         """
-        if(len(list) != len(self._cols)):
+        if(len(rowList) != len(self._cols)):
             raise Exception('Row-Length vs. NumOfColumns size mismatch')
         if(index < 0):
-            self._rows.append(list)
+            self._rows.append(rowList)
         else:
             if(index > len(self._rows)):
                 while(len(self._rows) <= index):
                     self._rows.append([])
-            self._rows[index] = list
+            self._rows[index] = rowList
 
     def getRow(self, index):
         """
@@ -85,16 +85,16 @@ class idLogTable():
         """
         self._rows.remove(self._rows[num])
     
-    def setHeaders(self, list):
+    def setHeaders(self, headerList):
         """
-        setHeaders(list)
+        setHeaders(headerList)
         parms:
-            list: a list containing the new header information, the size must be
+            headerList: a headerList containing the new header information, the size must be
                 the same as the existing headers, else an exception will be thrown
         """
-        if(len(self._cols) != len(list)):
+        if(len(self._cols) != len(headerList)):
             raise Exception('setHeaders column size mismatch')
-        self._cols = list
+        self._cols = headerList
         
     def getHeaders(self):
         """
