@@ -7,9 +7,25 @@ Created on 25 Tem 2012
 import sys
 import MySQLdb as mdb
 from datetime import datetime
+import idLogTable
+"""Tables in tha database should be as following:
 
-"""Tables are as following:
+Log Table
+    #     Sütun         Türü            Karþýlaþtýrma   Öznitelikler                    Boþ      Varsayýlan           Ekstra   
+     1    ID            int(11)                                                         Hayýr    Yok                  AUTO_INCREMENT  
+     2    User          varchar(64)     utf8_unicode_ci                                 Hayýr    USER()             
+     3    CreationDate  timestamp                                                       Hayýr    0000-00-00 00:00:00     
+     4    LastModified  timestamp                       on update CURRENT_TIMESTAMP     Hayýr    CURRENT_TIMESTAMP    ON UPDATE CURRENT_TIMESTAMP      
+     5    Category      int(11)                                                         Hayýr    Yok       
+     6    Content       varchar(2048)   utf8_unicode_ci                                 Hayýr    Yok        
+     7    PreceededBy   int(11)                                                         Evet     NULL       
+     8    SucceededBy   int(11)                                                         Evet     NULL       
+     9    ActiveFlag    tinyint(1)                                                      Hayýr    1          
 
+Category Table
+          Sütun            Türü           Karþýlaþtýrma      Boþ        Varsayýlan     Ekstra  
+     1    ID               int(11)                           Hayýr      Yok            AUTO_INCREMENT     
+     2    Category_Name    varchar(64)    utf8_unicode_ci    Hayýr      Yok           
 
 """
 
