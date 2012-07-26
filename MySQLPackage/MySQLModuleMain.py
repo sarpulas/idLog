@@ -284,20 +284,46 @@ def cursorToTable(targetCursor):
     
 def pullPreceeding(mainID):
     """Brings the entries defined as preceeding for the entry specified by the input id
-    input : The successor ID"""
+    input  : The successor ID
+    returns: The result cursor. If there are no preceeders, returns None"""
     queryString="SELECT PreceededBy FROM Log WHERE ID = '%d'" % mainID
     cur=executeQueryWithHandling(queryString)
     tCol=cur.fetchone()
     stringPreceeders=tCol[0]
-    stringListPreceeders=stringPreceeders.split(",")
-    listPreceeders=[]
-    for strs in stringListPreceeders:
-            listPreceeders.append(int(strs))
+    if stringPreceeders is not None:
+        stringListPreceeders=stringPreceeders.split(",")
+        listPreceeders=[]
+        for strs in stringListPreceeders:
+                listPreceeders.append(int(strs))
+        
+        idString=" OR ".join(["ID = %d" % (i) for i in listPreceeders])     
+        queryString="SELECT * FROM Log WHERE %s" % idString
+        cur=executeQueryWithHandling(queryString)    
+        return cur
+    else: 
+        return None
     
-    idString=" OR ".join(["ID = %d" % (i) for i in listPreceeders])     
-    queryString="SELECT * FROM Log WHERE %s" % idString
-    cur=executeQueryWithHandling(queryString)    
-    return cur
+    
+def pullSucceeding(mainID):
+    """Brings the entries defined as succeeding for the entry specified by the input id
+    input  : The successor ID
+    returns: The result cursor. If there are no preceeders, returns None"""
+    queryString="SELECT SucceededBy FROM Log WHERE ID = '%d'" % mainID
+    cur=executeQueryWithHandling(queryString)
+    tCol=cur.fetchone()
+    stringPreceeders=tCol[0]
+    if stringPreceeders is not None:
+        stringListPreceeders=stringPreceeders.split(",")
+        listPreceeders=[]
+        for strs in stringListPreceeders:
+                listPreceeders.append(int(strs))
+        
+        idString=" OR ".join(["ID = %d" % (i) for i in listPreceeders])     
+        queryString="SELECT * FROM Log WHERE %s" % idString
+        cur=executeQueryWithHandling(queryString)    
+        return cur
+    else: 
+        return None
          
 print "beginning..."
 connection=checkPassword('alpsayin_test','sayin')
@@ -308,8 +334,11 @@ if connection is 1:
     #print pullSystemTime()
     #pushNewMessage('IdLogX','TestRun6',10)
     #cur=pullByUser(userName)
-    cur=pullPreceeding(24)
-    printResult(cur)
+    cur=pullSucceeding(10)
+    if cur is None:
+        print "No Preceeders!"
+    else:
+        printResult(cur)
     #cursorToTable(cur)
     #print getCategoryID('test')
     #pullByCategory('test')
