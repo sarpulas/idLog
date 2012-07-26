@@ -25,17 +25,16 @@ def saveAsXLSX(table, path):
     
     for col_idx in xrange(1, table.getHeadersLength()+1):
         col = get_column_letter(col_idx)
-        entrySheet.cell('%s%s'%(col, 1)).value = table.getHeaders()[col_idx-1]
+        entrySheet.cell('%s%s'%(col, 1)).value = str(table.getHeaders()[col_idx-1])
     
     for row in xrange(2,len(table)+2):
         rowList = table.getRow(row-2)
         for col_idx in xrange(1,len(rowList)+1):
             col = get_column_letter(col_idx)
-            entrySheet.cell('%s%s'%(col, row)).value = rowList[col_idx-1]
+            entrySheet.cell('%s%s'%(col, row)).value = str(rowList[col_idx-1])
     
     wb.save(filename = path)
-    
-    return
+
 
 def saveAsPDF(table, path):
     return
