@@ -7,25 +7,25 @@ Created on 25 Tem 2012
 import sys
 import MySQLdb as mdb
 from datetime import datetime
-import idLogTable
+from idLogTable import idLogTable
 """Tables in tha database should be as following:
 
 Log Table
-    #     Sütun         Türü            Karþýlaþtýrma   Öznitelikler                    Boþ      Varsayýlan           Ekstra   
-     1    ID            int(11)                                                         Hayýr    Yok                  AUTO_INCREMENT  
-     2    User          varchar(64)     utf8_unicode_ci                                 Hayýr    USER()             
-     3    CreationDate  timestamp                                                       Hayýr    0000-00-00 00:00:00     
-     4    LastModified  timestamp                       on update CURRENT_TIMESTAMP     Hayýr    CURRENT_TIMESTAMP    ON UPDATE CURRENT_TIMESTAMP      
-     5    Category      int(11)                                                         Hayýr    Yok       
-     6    Content       varchar(2048)   utf8_unicode_ci                                 Hayýr    Yok        
-     7    PreceededBy   int(11)                                                         Evet     NULL       
-     8    SucceededBy   int(11)                                                         Evet     NULL       
-     9    ActiveFlag    tinyint(1)                                                      Hayýr    1          
+    #     Sutun         Turu            Karsilastirma   Oznitelikler                    Bos      Varsayilan           Ekstra   
+     1    ID            int(11)                                                         Hayir    Yok                  AUTO_INCREMENT  
+     2    User          varchar(64)     utf8_unicode_ci                                 Hayir    USER()             
+     3    CreationDate  timestamp                                                       Hayir    0000-00-00 00:00:00     
+     4    LastModified  timestamp                       on update CURRENT_TIMESTAMP     Hayir    CURRENT_TIMESTAMP    ON UPDATE CURRENT_TIMESTAMP      
+     5    Category      int(11)                                                         Hayir    Yok       
+     6    Content       varchar(2048)   utf8_unicode_ci                                 Hayir    Yok        
+     7    PreceededBy   varchar(64)     utf8_unicode_ci                                 Evet     NULL       
+     8    SucceededBy   varchar(64)     utf8_unicode_ci                                 Evet     NULL       
+     9    ActiveFlag    tinyint(1)                                                      Hayir    1          
 
 Category Table
-          Sütun            Türü           Karþýlaþtýrma      Boþ        Varsayýlan     Ekstra  
-     1    ID               int(11)                           Hayýr      Yok            AUTO_INCREMENT     
-     2    Category_Name    varchar(64)    utf8_unicode_ci    Hayýr      Yok           
+          Sutun            Turu           Karsilastirma      Bos        Varsayilan     Ekstra  
+     1    ID               int(11)                           Hayir      Yok            AUTO_INCREMENT     
+     2    Category_Name    varchar(64)    utf8_unicode_ci    Hayir      Yok           
 
 """
 
@@ -216,7 +216,7 @@ def pushNewMessage(category,content,succeeding=None):
     """Used to push a new log message 
     input   : Category Name (New category will be created automatically if it is a new category
             : Content of the log entry
-            : The preceeding entry ID, should be given in integer form."""   
+            : The preceeding entry ID list, should be given in an integer list form."""   
     categoryID=getCategoryID(category)
     
     if categoryID is None:
@@ -230,14 +230,33 @@ def pushNewMessage(category,content,succeeding=None):
         cur=executeQueryWithHandling(queryString)
         con.commit()
     else:
-        queryString="INSERT INTO Log(User,CreationDate,Category,Content,PreceededBy) VALUES('%s','%s','%s','%s','%s')" % (userName,curTime,categoryID,content,succeeding)
+        preceedString=None
+        if type(succeeding) is int:
+            preceedString = "%d" % succeeding
+        else:
+            preceedString=",".join(["%d" % (i) for i in succeeding])  
+        queryString="INSERT INTO Log(User,CreationDate,Category,Content,PreceededBy) VALUES('%s','%s','%s','%s','%s')" % (userName,curTime,categoryID,content,preceedString)
         cur=executeQueryWithHandling(queryString)
         queryString="SELECT ID FROM Log WHERE CreationDate = '%s'" % curTime
         cur=executeQueryWithHandling(queryString)
         idRow=cur.fetchone()
         newID=idRow[0]
-        queryString="UPDATE Log SET SucceededBy = %d WHERE ID = %d" % (newID,succeeding)
-        cur=executeQueryWithHandling(queryString)
+        if type(succeeding) is int:
+            succeedingList=[succeeding]
+        else:
+            succeedingList=succeeding
+ 
+        for i in succeedingList:
+            queryString="SELECT SucceededBy FROM Log Where ID = '%d'" % i
+            cur=executeQueryWithHandling(queryString)
+            succeedList=cur.fetchone()
+            succeedString=succeedList[0]
+            if succeedString is None:
+                succeedString="%d" % newID
+            else:
+                succeedString+=",%d" % newID
+            queryString="UPDATE Log SET SucceededBy = '%s' WHERE ID = %d" % (succeedString,i)
+            cur=executeQueryWithHandling(queryString)
         con.commit()
         
 def pullByUser(user,n=20):
@@ -248,8 +267,64 @@ def pullByUser(user,n=20):
     cur=executeQueryWithHandling(queryString)     
     return cur
     
-
-
+def cursorToTable(targetCursor):
+    """Converts the given cursor object into a table
+    input   : A Cursor object which is the result of a query
+    Returns : A table filled with the information from cursor"""
+    desc=targetCursor.description 
+    headerList=[]; 
+    for field in desc:
+        headerList.append( field[0])
+    resultTable=idLogTable(headerList) 
+    rowList=targetCursor.fetchall()
+    for row in rowList:
+        lRow=list(row)
+        resultTable.addRow(lRow)       
+    return resultTable
+    
+def pullPreceeding(mainID):
+    """Brings the entries defined as preceeding for the entry specified by the input id
+    input  : The successor ID
+    returns: The result cursor. If there are no preceeders, returns None"""
+    queryString="SELECT PreceededBy FROM Log WHERE ID = '%d'" % mainID
+    cur=executeQueryWithHandling(queryString)
+    tCol=cur.fetchone()
+    stringPreceeders=tCol[0]
+    if stringPreceeders is not None:
+        stringListPreceeders=stringPreceeders.split(",")
+        listPreceeders=[]
+        for strs in stringListPreceeders:
+                listPreceeders.append(int(strs))
+        
+        idString=" OR ".join(["ID = %d" % (i) for i in listPreceeders])     
+        queryString="SELECT * FROM Log WHERE %s" % idString
+        cur=executeQueryWithHandling(queryString)    
+        return cur
+    else: 
+        return None
+    
+    
+def pullSucceeding(mainID):
+    """Brings the entries defined as succeeding for the entry specified by the input id
+    input  : The successor ID
+    returns: The result cursor. If there are no preceeders, returns None"""
+    queryString="SELECT SucceededBy FROM Log WHERE ID = '%d'" % mainID
+    cur=executeQueryWithHandling(queryString)
+    tCol=cur.fetchone()
+    stringPreceeders=tCol[0]
+    if stringPreceeders is not None:
+        stringListPreceeders=stringPreceeders.split(",")
+        listPreceeders=[]
+        for strs in stringListPreceeders:
+                listPreceeders.append(int(strs))
+        
+        idString=" OR ".join(["ID = %d" % (i) for i in listPreceeders])     
+        queryString="SELECT * FROM Log WHERE %s" % idString
+        cur=executeQueryWithHandling(queryString)    
+        return cur
+    else: 
+        return None
+         
 print "beginning..."
 connection=checkPassword('alpsayin_test','sayin')
 if connection is 1:
@@ -257,9 +332,14 @@ if connection is 1:
     #print pushCategory('IdLogXY')
     #clearCategories()
     #print pullSystemTime()
-    #pushNewMessage('IdLogX','TestRun5')
-    cur=pullByUser(userName)
-    printResult(cur)
+    #pushNewMessage('IdLogX','TestRun6',10)
+    #cur=pullByUser(userName)
+    cur=pullSucceeding(10)
+    if cur is None:
+        print "No Preceeders!"
+    else:
+        printResult(cur)
+    #cursorToTable(cur)
     #print getCategoryID('test')
     #pullByCategory('test')
     #pullCategories()
