@@ -7,6 +7,9 @@ Created on Jul 26, 2012
 class idLogTable():
     '''
     A Simple Class to keep tables with fixed column size
+    members:
+        _rows : list of lists
+        _cols : list of strings
     '''
     def __init__(self, headers_vect):
         '''
