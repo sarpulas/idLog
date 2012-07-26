@@ -30,7 +30,7 @@ Category Table
 
 """
 
-ip='67.228.247.186'
+ip='www.alpsayin.com'
 dbName= 'alpsayin_idtest'
 con = None
 currentTable=None
@@ -409,7 +409,8 @@ if connection is 1:
     #===========================================================================
     #cursorToTable(cur)
     #print getCategoryID('test')
-    #pullByCategory('test')
+    cur=pullByCategory('IdLogX')
+    printResult(cur)
     #pullCategories()
     #pullAll()
     #pullLast(1)
