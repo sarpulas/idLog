@@ -37,17 +37,16 @@ currentTable=None
 userName=None
 
 def checkPassword(user,password):
-     """Function for logging into the database"""   
-     global con    
-     global userName
-     userName=user
-     try:
-         con = mdb.connect(ip, userName,password, dbName)
-     except mdb.Error, e: 
+    """Function for logging into the database"""   
+    global con    
+    global userName
+    userName=user
+    try:
+        con = mdb.connect(ip, userName,password, dbName)
+    except mdb.Error, e: 
         print "Error %d: %s" % (e.args[0],e.args[1])
         sys.exit(1)
-     finally:    
-            
+    finally:              
         if con:    
             print "connected..."
             return 1
@@ -142,6 +141,12 @@ def pullSystemTime():
     timeRow=cur.fetchone()
     return timeRow[0]
 
+def getCategoryName(categoryID):
+    """Acquire the name of the category by given id"""
+    queryString="SELECT Category_Name FROM Categories WHERE ID=%d" % categoryID
+    cur=executeQueryWithHandling(queryString)
+    return cur.fetchone()[0]
+
 def getCategoryID(categoryName):
     """Returns the ID of a category specified with its name"""
     """Returns None if the category is not yet in the database"""
@@ -151,7 +156,6 @@ def getCategoryID(categoryName):
     queryString=None
     
     for row in categoryRows:
-        index=0
         for field in row:
             if field == categoryName:
                 #print "found the category"                
@@ -172,12 +176,12 @@ def pullByCategory(category,n=20):
     """Get a certain number of latest entries for a given category
     input    : the name of the category, 
                number of entries to be retrieved (default=20)"""
-    id=getCategoryID(category)
+    cid=getCategoryID(category)
     
     if id is None:
         return None
     
-    queryString="SELECT * FROM Log WHERE CATEGORY = %s LIMIT %s" % (id,n)
+    queryString="SELECT * FROM Log WHERE CATEGORY = %s LIMIT %s" % (cid,n)
     cur=executeQueryWithHandling(queryString)
     return cur
     
@@ -206,10 +210,10 @@ def pullByKeyword(keyword):
     cur=executeQueryWithHandling(queryString)
     return cur
     
-def pullByID(id):
+def pullByID(lid):
     """Pull a log entry by its ID
     input: ID of the desired log entry"""
-    queryString="SELECT * FROM Log WHERE ID = %s" % (id)
+    queryString="SELECT * FROM Log WHERE ID = %s" % (lid)
     cur=executeQueryWithHandling(queryString)
     return cur
 
@@ -357,14 +361,32 @@ def modifyMessage(message):
         con.commit()
     else:
         raise Exception("The modifying user is not the same as original user")    
-        
+
+def pushMessage(message):
+    """Used to push a new log message 
+    input   : A Message Object (New category will be created automatically if it is a new category"""   
+    messageCategory=getCategoryName(int(message.getCategory()))
+    messageString=message.getContent()
+    messagePreceeders=message.getPrecededBy()
+    pushNewMessage(messageCategory,messageString,messagePreceeders)
+      
+def recieveMessage(message):
+    """General function for sending a message to the database
+    input : THe Message object to be transmitted. If it is an already existing message, it will be updated, otherwise a new one will be created"""
+    mid=message.getId()
+    existMessage=pullByID(mid).fetchone()
+    if existMessage is None:
+        pushMessage(message)
+    else:
+        modifyMessage(message)
+          
 def listToMessage(sourceRow):
     """Convert a given result row to a message
     Returns the created Message"""
-    [id,User,CD,LD,Category,Content,PBS,SBS,AF]=sourceRow
+    [lid,User,CD,LD,Category,Content,PBS,SBS,AF]=sourceRow
     PBI=convertSucPrecListToIntList(PBS)
     SBI=convertSucPrecListToIntList(SBS)
-    argList=[id,User,CD,LD,Category,Content,PBI,SBI,AF]
+    argList=[lid,User,CD,LD,Category,Content,PBI,SBI,AF]
     return idLogMessage(argList)
     
 print "beginning..."
@@ -377,12 +399,14 @@ if connection is 1:
     #pushNewMessage('IdLogX','TestRun8',[22,25])
     #cur=pullByUser(userName)
     #listToMessage(cur.fetchone())
-    cur=pullSucceeding(22)
+
     #printResult(cur)
-    mess=listToMessage(cur.fetchone())
-    mess.setActive(0)
-    mess.setUser('dopq')
-    modifyMessage(mess)
+    #===========================================================================
+    # mess=listToMessage(cur.fetchone())
+    # mess.setUser('dopq')
+    # mess.setContent('tRUn2')
+    # pushMessage(mess)
+    #===========================================================================
     #cursorToTable(cur)
     #print getCategoryID('test')
     #pullByCategory('test')
