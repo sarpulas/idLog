@@ -16,8 +16,8 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1343220044726</id>
-			<name>MySQLModule</name>
+			<id>0</id>
+			<name>MySQLPackage</name>
 			<type>5</type>
 			<matcher>
 				<id>org.eclipse.ui.ide.multiFilter</id>
