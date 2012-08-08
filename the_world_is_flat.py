@@ -1,9 +1,10 @@
 #! /usr/bin/env	 python
-the_world_is_flat = 1
+the_world_is_flat = 0
 if the_world_is_flat:
 	print "Be careful not to fall off!"
 else:
 	print "Yes it's not flat!"
+	print "You know better than I do!"
 
 the_world_is_flat = "ALP SAYIN"
 
